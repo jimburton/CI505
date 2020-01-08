@@ -105,7 +105,7 @@ contains a "stanza" (a named block of config
 details) for each executable, library and test-suite. To get an idea of
 how this works, take a look at [config
 file](https://github.com/jimburton/MkPasswd/blob/master/mkPasswd.cabal)
-for the simple `MkPasswd` and compare it to the [project
+for the `MkPasswd` project, which is about as simple as it gets, and compare it to the [project
 structure](https://github.com/jimburton/MkPasswd). Given the names of the "tags"
 (the names of the stanzas) we build and run it like this:
 
