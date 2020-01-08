@@ -1,15 +1,14 @@
 # Working with projects
 
-If you are working on a very small script or program that fits into
-one module and has no external dependencies (i.e. libraries that
+If you're working on a very small script or program that fits into
+one module and has no external dependencies (i.e. you aren't importing libraries that
 aren't part of the Haskell base language), you can get along very well
 using the interpreter `ghci` to run and experiment with the code and the
-compiler `ghc` to build an executable. For anything larger you need a
-*build tool*. This will automate the downloading of the right versions
-of library dependencies, make sure that everything is compiled in the
+compiler `ghc` to build an executable. For anything bigger you need a
+*build tool*. This will automate downloading of the dependencies, make sure everything is compiled in the
 right order, make it easy to run a suite of tests and to package your
-application for other users. There are two dominant build tools for
-Haskell -- [`stack`](https://docs.haskellstack.org/en/stable/README/) and [`cabal`](https://www.haskell.org/cabal/). I tend to use `cabal` so that's what is
+application for other users. There are two main ways of building
+Haskell projects -- [`stack`](https://docs.haskellstack.org/en/stable/README/) and [`cabal`](https://www.haskell.org/cabal/). I tend to use `cabal` so that's what is
 described below.
 
 `cabal` is installed on Linux in the labs but it will be an older version that needs to be upgraded. Start by entering these commands into a terminal:
@@ -23,7 +22,7 @@ $ cabal install cabal-install
 This will download the latest list of packages from the "Hackage"
 repository (which is where haskell developers upload libraries and
 other software for distribution) and install the latest version of the
-`cabal` executable. The default location for haskell packages is
+`cabal` executable. The default location for `cabal` packages is
 `~/.cabal/bin`, where `~` is your home directory,
 e.g. `/home/ab123`. So to run programs installed by `cabal` (such as the
 new version of `cabal` you just installed), you need to
@@ -106,8 +105,8 @@ details) for each executable, library and test-suite. To get an idea of
 how this works, take a look at [config
 file](https://github.com/jimburton/MkPasswd/blob/master/mkPasswd.cabal)
 for the `MkPasswd` project, which is about as simple as it gets, and compare it to the [project
-structure](https://github.com/jimburton/MkPasswd). Given the names of the "tags"
-(the names of the stanzas) we build and run it like this:
+structure](https://github.com/jimburton/MkPasswd). Given the the names of the stanzas in the config file, 
+we build and run it like this:
 
 ```bash
 $ cabal configure
