@@ -75,7 +75,7 @@ Any project consists of either an *executable* (a runnable program) or a
 *library* (code that other developers will import to their own projects)
 or both. An executable needs to have an entry point, which is a module
 called `Main.hs` which includes a function called `main` with the right
-type. For eaxample:
+type. For example:
 
 ```haskell
 -- In module Main.hs
