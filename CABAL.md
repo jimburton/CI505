@@ -84,7 +84,7 @@ main :: IO ()
 main = print "Hello World!"
 ```
 
-The normal structure is to put the code in a directory called `src`
+The norm is to put the code in a directory called `src`
 and the tests in a directory called `tests`, so the structure might look
 something like this:
 
