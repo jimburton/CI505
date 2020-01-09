@@ -21,11 +21,11 @@ $ cabal install cabal-install
 
 This will download the latest list of packages from the "Hackage"
 repository (which is where haskell developers upload libraries and
-other software for distribution) and install the latest version of the
-`cabal` executable. The default location for `cabal` packages is
+other software for distribution) and install the latest version of
+`cabal`. The default location for packages is
 `~/.cabal/bin`, where `~` is your home directory,
 e.g. `/home/ab123`. So to run programs installed by `cabal` (such as the
-new version of `cabal` you just installed), you need to
+new version of it you just installed), you need to
 add this location to your `PATH` variable. This is a Linux environment
 variable containing a list of locations in the file system that Bash
 will look in when you type a command in to a
