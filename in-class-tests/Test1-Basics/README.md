@@ -1,6 +1,27 @@
 # In-Class Test 1 -- List functions
 
-Make your changes to the module `Main.hs` in the same directory as this file. 
+Make your changes to the module `Main.hs` in the same directory as this file. As the
+same time as having your editor open, you will want to have `ghci` running in a terminal.
+Open a terminal and `cd` to this directory. As you make changes to the code you can call
+functions with various inputs and inspect the results.
+
+Load the file into the inrepreter with the command `ghci Main.hs`. The first time you do
+this you may get an error about the `QuickCheck` library. If so, use cabal to install it:
+
+```
+$ cabal install --lib QuickCheck
+```
+
+Now you should be able to load the file and get started. `ghci` does tab completion so you can 
+type the beginning of a function name and press tab to complete it. Try entering `my` and pressing
+tab. 
+
+In addition to playing with the functions yourself, each of them has at least one automated
+test. These are collected at the end of `Main.hs` -- have a look at what's there. Run tests
+in `ghci` by entering `quickCheck <name-of-test.>` or run all of them at once by entering `:main`.
+This runs the `main` function (it only needs a colon before it because `main` is a special 
+function in that GHC supplies it with arguments from the command line).
+
 
 1. Complete the function
 ```haskell
