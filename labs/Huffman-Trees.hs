@@ -33,7 +33,9 @@ function
 -}
 
 tree :: Ord a => [a] -> Maybe (HTree a)
-tree str = undefined
+tree str = if not $ null str 
+           then merge $ map (\f -> Leaf (snd f) (fst f)) (fTable str)
+           else Nothing
 
 {- 3. Merge a list of HTree nodes into a single Maybe HTree. If the
 input is empty, return Nothing. If the input contains a single
@@ -47,17 +49,44 @@ When merging two nodes, n1 and n2, the node with the lowest frequency
 will be the left-hand child in the new Branch node.  
 -} 
 merge :: [HTree a] -> Maybe (HTree a)
-merge xs = undefined
+merge [] = Nothing
+merge (x:[]) = Just x
+merge (x:y:zs) = let cX = getFreq x
+                     cY = getFreq y
+                     i = cX + cY in
+                 if cX < cY then
+                     merge $ insert (Branch i x y) zs
+                 else 
+                     merge $ insert (Branch i y x) zs
 
 {- 4. Insert a HTree node into a list sorted by ascending frequency.
 -}
 insert :: HTree a -> [HTree a] -> [HTree a]
-insert h xs = undefined
+insert h [] = [h]
+insert h (t:ts) = if getFreq h < getFreq t then h:t:ts
+                  else t : insert h ts
 
 {- 5. Construct the sorted frequency table for the input [a].
 -}
 fTable :: Ord a => [a] -> FreqTable a
-fTable xs = undefined
+fTable = sort' . freq 
+    where freq [] = []
+          freq (c:cs) = freqInner (c,1) cs : freq (filter (/=c) cs)
+              where freqInner (d,n) [] = (d,n)
+                    freqInner (d,n) (e:es) = let m = if d==e then n+1 else n
+                                             in freqInner (d,m) es
+
+-- A getter for the frequency count in a HTree node.
+getFreq :: HTree a -> Int
+getFreq (Branch i _ _) = i
+getFreq (Leaf i _) = i
+
+-- Pseudo-QuickSort 
+sort' :: Ord b => [(a,b)] -> [(a,b)]
+sort' [] = []
+sort' (x:xs) = (sort' lt) ++ [x] ++ (sort' gt)
+    where lt = filter (\(y,z) -> z < snd x) xs
+          gt = filter (\(y,z) -> z >= snd x) xs
 
 -- Use these functions to pretty-print your trees
 
