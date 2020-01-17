@@ -1,7 +1,7 @@
 # Week 5 -- Exercises with the `spamfilter` case study
 
-In this week's lab exercise you will download the program we used as a case study in the
-lecture, and make several improvements to it.
+In this week's lab exercise you will download the program we used as a
+case study in a recent lecture and make several improvements to it.
 
 1. Create your own local copy of the program by cloning the \texttt{spamfilter} repository: 
 
