@@ -10,7 +10,14 @@ Add your solutions to the following problems to the file you created last time. 
 
 1. Pack consecutive duplicates of list elements into sublists. If a
    list contains repeated elements they should be placed in separate
-   sublists. 
+   sublists. Rather than working only on strings and chars, we want
+   the function to work for any data type that can be compared for
+   equality, i.e. is a member of the `Eq` type class. So your function
+   should have this type signature:
+	
+```
+pack :: Eq a => [a] -> [[a]]
+```
 
 Example:
 
@@ -19,14 +26,7 @@ Example:
              'a', 'd', 'e', 'e', 'e', 'e']
 ["aaaa","b","cc","aa","d","eeee"]
 ``` 
-	Rather than working only on strings and chars, we want the function to
-	work for any data type that can be compared for equality, i.e. is a 
-	member of the `Eq` type class. So your function should have this type
-	signature:
 	
-```
-pack :: Eq a => [a] -> [[a]]
-```
 	
 2. Run-length encoding of a list. Use your `pack` function to
    implement the so-called *run-length encoding* data compression
