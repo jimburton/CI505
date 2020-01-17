@@ -1,4 +1,4 @@
-# Week 5 -- Exercises with the `spamfilter` case study
+# Exercises with the `spamfilter` case study
 
 In this week's lab exercise you will download the program we used as a
 case study in a recent lecture and make several improvements to it.

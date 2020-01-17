@@ -11,7 +11,7 @@ Main.hs`. The first time you do this you may get an error about the
 `QuickCheck` library. If so, quite the interpreter by entering `:q`
 and use cabal to install the `QuickCheck` library:
 
-```
+``` 
 $ cabal install --lib QuickCheck
 ```
 

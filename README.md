@@ -34,7 +34,7 @@ on this and/or have a go at subsequent exercises.
 
 ## Week 6
 
-[Spamfilter program](labs/Week5-Spam.md)
+[Spamfilter program](labs/Spam.md)
 
 ## Week 7
 
@@ -46,7 +46,7 @@ Read [these slides](labs/huffman-slides.pdf) on Huffman Trees, then [implement t
 
 ## Week 9
 
-[Parsing and IO exercises](labs/Week4-Parsing/README.md).
+[Parsing and IO exercises](labs/Parsing/README.md).
 
 ## Week 10 and on
 
