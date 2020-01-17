@@ -13,15 +13,16 @@ Add your solutions to the following problems to the file you created last time. 
    sublists. 
 
 Example:
+
 ```haskell
 λ> pack ['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 
              'a', 'd', 'e', 'e', 'e', 'e']
 ["aaaa","b","cc","aa","d","eeee"]
-```
-
+``` 
 	Rather than working only on strings and chars, we want the function to
 	work for any data type that can be compared for equality, i.e. is a 
-	member of the `Eq` type class. So your function should have this type signature:
+	member of the `Eq` type class. So your function should have this type
+	signature:
 	
 ```
 pack :: Eq a => [a] -> [[a]]
