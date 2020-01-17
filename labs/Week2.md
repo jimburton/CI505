@@ -10,10 +10,9 @@ Add your solutions to the following problems to the file you created last time. 
 
 1. Pack consecutive duplicates of list elements into sublists. If a
    list contains repeated elements they should be placed in separate
-   sublists. Rather than working only on strings and chars, we want
-   the function to work for any data type that can be compared for
-   equality, i.e. is a member of the `Eq` type class. So your function
-   should have this type signature:
+   sublists. We want the function to work for any data type that can
+   be compared for equality, i.e. is a member of the `Eq` type
+   class. So your function should have this type signature:
 	
 ```
 pack :: Eq a => [a] -> [[a]]
