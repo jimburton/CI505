@@ -48,6 +48,8 @@ Read [these slides](labs/huffman-slides.pdf) on Huffman Trees, then [implement t
 
 [Parsing and IO exercises](labs/Parsing/README.md).
 
-## Week 10 and on
+## Week 10 
 
-Polishing the assignment and/or working on earlier exercises.
+[Webservices with Haskell](https://github.com/jimburton/haskell-webservice/blob/master/README.md). 
+Note that this time-consuming exercise lives in its own repository. Although you may not have
+time to complete it, you can always use it as a basic reference on the Happstack web framework.
