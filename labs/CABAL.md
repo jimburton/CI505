@@ -11,8 +11,7 @@ the right order, make it easy to run a suite of tests and to package
 your application for other users. There are two main ways of building
 Haskell projects --
 [`stack`](https://docs.haskellstack.org/en/stable/README/) and
-[`cabal`](https://www.haskell.org/cabal/). I normally use `cabal` so
-that's what is described below.
+[`cabal`](https://www.haskell.org/cabal/). We will be using `cabal`.
 
 `cabal` is installed on Linux in the labs but it will be an older
 version that needs to be upgraded. Start by entering these commands
