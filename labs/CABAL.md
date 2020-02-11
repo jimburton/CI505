@@ -77,27 +77,86 @@ $ cabal init
 $ ls
 ```
 
-To get an idea of the structure of a Haskell project we will use a simple one of
-mine as an example. `MkPasswd` is a program that generates new passowrds of varying
-strength. Clone the repository from github, `cd` into the directory and list its 
-contents:
+To get an idea of the structure of a Haskell project we will look at
+two very simple projects as examples. The first is called `change` -- it
+reads in a number from the user and calculates the coins needed to make that
+amount. Clone the repository
+from github and `cd` into the directory:
+
+```
+$ git clone https://github.com/jimburton/change
+Cloning into 'change'...
+...
+$ cd change
+```
+
+Now you can use `cabal` to run the program:
+
+```
+change$ cabal run
+...
+Enter a number and I'll count out the change
+44
+2 twenty pence pieces, 2 two pence pieces
+Enter a number and I'll count out the change
+
+```
+
+Enter an empty line to stop using the program. List the contents of the
+project folder:
+
+```
+change$ ls
+change.cabal  ChangeLog.md  LICENSE  README.md  Setup.hs  src  TAGS
+```
+The main things to notice are the `src` folder, which is where the code
+lives, and the file `change.cabal`. The file `change.cabal` is a config file
+for `cabal` -- it tells `cabal` how to build the project, i.e. which libraries
+need to be imported, if any, and where the code is. Open it and read the contents.
+
+From the `cabal` file, you can see that the entry point for the
+application is the file `src/Main.hs`. Open this file and read the
+code. Don't worry if you don't understand all of it at this stage, but
+look out for the `main` method -- this is the first function to run.
+
+
+Next, we will look at a project which is still very simple but
+slightly more realistic. It uses some libraries and comes with
+tests. `MkPasswd` is a program that generates new passwords of varying
+strength. Clone the repository from github and `cd` into the top-level
+directory:
 
 ```
 $ git clone https://github.com/jimburton/MkPasswd
 Cloning into 'MkPasswd'...
-remote: Enumerating objects: 4, done.
-remote: Counting objects: 100% (4/4), done.
-remote: Compressing objects: 100% (4/4), done.
-remote: Total 117 (delta 0), reused 2 (delta 0), pack-reused 113
-Receiving objects: 100% (117/117), 18.72 KiB | 912.00 KiB/s, done.
-Resolving deltas: 100% (53/53), done.
+...
 $ cd MkPasswd
-MkPasswd$ ls
-LICENSE  mkPasswd.cabal  README.md  Setup.hs  src  tests
 ```
-As you can see, there is a `cabal` file, a `README` file describing the project,
-and two directories for code, `src/` and `tests`. Use `cabal` to run the program
-and then run the tests:
+
+Take a look at the `cabal` config file for the new project,
+`mkPasswd.cabal`. This is the block (or "stanza") that defines the program to be built:
+
+```
+executable mkPasswd
+  main-is: Main.hs             
+  other-modules:       MkPasswd.MkPasswd
+                     , MkPasswd.Types
+  build-depends:       base, random >=1.0 
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+```
+
+`other-modules` is a list of all the modules in our program that are
+used when it runs. `build-depends` is a list of all the external
+libraries that it uses. In this case that is just `base` (i.e. the
+Prelude functions) and `random`, used for making random
+passwords. 
+
+Below this stanza is a second one that defines a test suite. Because
+there is more than one stanza, you need to tell `cabal` which you want
+to run. Now run the program, followed by its tests:
+
 
 ```
 MkPasswd$ cabal run mkPasswd
@@ -109,7 +168,7 @@ This program takes a variety of flags on the command line that govern
 the kind of passwords that are generated. If you want to pass flags to
 a program that is being run by `cabal` you have to do so after two
 dashes (`--`) so that `cabal` can distinguish between the arguments
-intended for it and those intended for the program it is running. Pass
+intended for *it* and those intended for *the program it is running*. Pass
 the ``--help` command to `MkPasswd` to lists all its options then
 experiment with producing a few different types of password:
 
@@ -117,8 +176,9 @@ experiment with producing a few different types of password:
 MkPasswd$ cabal run mkPasswd -- --help
 ```
 
-This is how you would run the program during development. `cabal` can also install it
-permanently into `~/.cabal/bin`. Install the program and run it:
+This is how you would run the program during development. `cabal` can
+also install your programs permanently into `~/.cabal/bin`. Install
+the program and run it:
 
 ```
 MkPasswd$ cabal install
@@ -130,34 +190,14 @@ MkPasswd$ mkPasswd
 
 One more very useful thing `cabal` can do for you is to start the interpreter, `ghci`,
 loading all the modules and dependencies that it needs to run. This is done with the `repl`
-command.
+command. Run the program in the REPL and call its `main` method:
 
-Every project consists of one or more *executables* (a runnable program), 
-*libraries* (code that other developers will import to their own projects)
-or both. An executable needs to have an entry point. This is a top-level module
-called `Main.hs` which includes a function called `main` with the right
-type. 
-
-```haskell
--- In src/Main.hs
-module Main where
-
--- ...
-{-| Entry point. -}
-main :: IO ()
-main = do xs <- getArgs
--- ...
 ```
-
-All the `Main` module does is act as an entry point and handle reading
-the command line flags passed in by the user.
-
-You need to tell `cabal` about the structure of your project, where
-the `Main` module is and so on. Open the cabal file in your editor.
-
-The cabal file contains a "stanza" (a named
-block of config details) for the executable and one for the 
-test-suite. 
+MkPasswd$ cabal repl
+...
+*Main> :main
+K3MP'5
+```
 
 See the
 [docs](https://www.haskell.org/cabal/users-guide/developing-packages.html)
