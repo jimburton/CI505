@@ -25,6 +25,8 @@ Example:
              'a', 'd', 'e', 'e', 'e', 'e']
 ["aaaa","b","cc","aa","d","eeee"]
 ``` 
+
+**Hint** One way to achieve this is by using the functions [takeWhile](https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:takeWhile) and [dropWhile](https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:dropWhile).
 	
 	
 2. Run-length encoding of a list. Use your `pack` function to
