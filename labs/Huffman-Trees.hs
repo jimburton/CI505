@@ -19,10 +19,11 @@ carries an int (representing frequency counts) and and leaves carry an
 additional piece of data of type a (e.g. a char). A HTree is a Huffman
 Tree. In a leaf node, (Leaf i c), i will represent the frequency of
 occurence of c. In a branch node (Branch i l r), i will represent the
-combined frquencies of the left and right children.-}
+combined frquencies of the left and right children.
 
-data HTree a = Branch Int (HTree a) (HTree a) | Leaf Int a 
-             deriving (Show, Eq)
+Your data type should derive the `Show` and `Eq` type classes. -}
+
+data HTree a = ...
 
 
 {- 2. Construct the Huffman tree for the input [a]. Return Nothing if
