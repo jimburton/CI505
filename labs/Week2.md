@@ -59,13 +59,16 @@ input. This function will take a pair, `(i,c)`. Use the functions
 `i`. This will result in a **list of lists** which you can flatten with
 the `concat` function. 
 
-So `decode` will have this kind of structure:
+So `decode` could have this kind of structure:
 
 ```haskell
 decode xs = concat (map (...) xs)
 ```
 
-Using `map` then `concat` is very common -- there is a function that does them both for you: [`concatMap`](https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:concatMap) 
+Using `map` then `concat` is very common -- **there is a function that
+does them both for you**:
+[`concatMap`](https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:concatMap). Use
+that instead of the structure suggested above.
 
 4. Create a data type, `RLE a` (for "run-length encodings" of values
    of type `a`). Use the `deriving` keyword to make it a member of the
