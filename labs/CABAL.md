@@ -148,9 +148,7 @@ change$ ls
 change.cabal  ChangeLog.md  LICENSE  README.md  Setup.hs  src  TAGS
 ```
 The main things to notice are the `src` folder, which is where the code
-lives, and the file `change.cabal`. The file `change.cabal` is a config file
-for `cabal` -- it tells `cabal` how to build the project, i.e. which libraries
-need to be imported, if any, and where the code is. Open it and read the contents.
+lives, and the config file `change.cabal`. Open the config file and read the contents. 
 
 From the `cabal` file, you can see that the entry point for the
 application is the file `src/Main.hs`. Open this file and read the
