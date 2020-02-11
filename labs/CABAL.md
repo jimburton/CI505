@@ -200,12 +200,12 @@ MkPasswd$ cabal run mkPasswd
 MkPasswd$ cabal run test-mkPasswd
 ```
 
-This program takes a variety of flags on the command line that govern
+This program takes a variety of flags (or options) on the command line that govern
 the kind of passwords that are generated. If you want to pass flags to
 a program that is being run by `cabal` you have to do so after two
 dashes (`--`) so that `cabal` can distinguish between the arguments
 intended for *it* and those intended for *the program it is running*. Pass
-the ``--help` command to `MkPasswd` to lists all its options then
+the `--help` command to `MkPasswd` to lists all its options then
 experiment with producing a few different types of password:
 
 ```
@@ -220,8 +220,8 @@ the program and run it:
 MkPasswd$ cabal install
 MkPasswd$ which mkPasswd
 /home/jb259/.cabal/bin/mkPasswd
-MkPasswd$ mkPasswd 
-5ICk3D
+MkPasswd$ mkPasswd  -l 5 -e
+vIt@15 [vitals] 
 ```
 
 One more very useful thing `cabal` can do for you is to start the interpreter, `ghci`,
