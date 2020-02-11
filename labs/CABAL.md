@@ -110,11 +110,16 @@ executable myproject
 
 ```
 
-To get a better idea of the structure of a Haskell project we will look at
-two very simple projects as examples. The first is called `change` -- it
-reads in a number from the user and calculates the coins needed to make that
-amount. Clone the repository
-from github and `cd` into the directory:
+The upper block of text contains general information about the
+project. The lower block, beginning with `executable ...`, tells
+`cabal` to build an executable (i.e. a program) called `myproject`,
+and that it can find the code in a file called `Main.hs`.
+
+To get a better idea of the structure of a real Haskell project we
+will look at two very simple projects as examples. The first is called
+`change` -- it reads in a number from the user and calculates the
+coins needed to make that amount. Clone the repository from github and
+`cd` into the directory:
 
 ```
 $ git clone https://github.com/jimburton/change
