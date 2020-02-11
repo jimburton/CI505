@@ -157,7 +157,7 @@ look out for the `main` method -- this is the first function to run.
 
 
 Next, we will look at a project which is still very simple but
-slightly more realistic. It uses some libraries and comes with
+slightly more realistic because it uses some libraries and comes with
 tests. `MkPasswd` is a program that generates new passwords of varying
 strength. Clone the repository from github and `cd` into the top-level
 directory:
