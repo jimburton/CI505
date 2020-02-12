@@ -3,31 +3,31 @@
 In this week's lab exercise you will download the program we used as a
 case study in a recent lecture and make several improvements to it.
 
-1. Create your own local copy of the program by cloning the \texttt{spamfilter} repository: 
+1. Create your own local copy of the program by cloning the `spamfilter` repository: 
 
 ```
-$ git clone git@github.com:jimburton/spamfilter.git
+$ git clone https://github.com/jimburton/spamfilter
 ```
 
-2. Use `cabal` to build and install the program:
+2. Use `cabal` to build the program:
 
 ```
 $ cd spamfilter
-spamfilter$ cabal configure
-spamfilter$ cabal install
+spamfilter$ cabal build
 ```
 
-Running `cabal install` will download and build the libraries that
+Running `cabal build` will download and build the libraries that
 `spamfilter` depends on, then install the program in a subfolder of
-the repository. Run the shell script to set up the database:
+the repository. Next, run the shell script that sets up the database:
 
 ```
-spamfilter$ cabal setupDB
+spamfilter$ ./setupdb.sh
 ```
 
 3. Train the program and use it to classify an email message. Download at least one tarball
-  (the Linux version of a zip file) each of spam and ham from this page:
-  https://spamassassin.apache.org/publiccorpus/. Extract the contents of the tarballs:
+  (the Linux version of a zip file) of ham and all of the tarballs of spam from this page:
+  https://spamassassin.apache.org/old/publiccorpus/. Extract the contents of the tarballs.
+  E.g.:
 
 ```
 $ tar xjvf XXX-easy_ham.tar.bz2
@@ -37,15 +37,15 @@ $ tar xjvf XXX-spam.tar.bz2
 Then train the program:
 
 ```
-spamfilter$ cabal spamfilter train /path/to/spam Spam
-spamfilter$ cabal spamfilter train /path/to/ham Ham
+spamfilter$ cabal run spamfilter train Spam /path/to/spam
+spamfilter$ cabal run spamfilter train Ham /path/to/ham
 ```
 
 Then try classifying some messages. The files in the directory `etc/mail` contain email
 messages and are named to indicate whether they are supposed to be ham or spam:
 
 ```
-spamfilter$ .cabal-sandbox/bin/spamfilter classify etc/mail/ham1.email
+spamfilter$ cabal run spamfilter classify etc/mail/ham1.email
 ```
 
 4. Now make some improvements to the program. First, so that you will
