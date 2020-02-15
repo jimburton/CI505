@@ -21,7 +21,7 @@ Read the tutorial on [Cabal](labs/CABAL.md), the haskell build tool.
 
 ## Week 4
 
-[In-class test](in-class-tests/Test1-Basics/README.md). Now is the
+[In-class test](in-class-tests/test1/README.md). Now is the
 time for you to get an idea of your progress. Complete the exercises
 and submit on studentcentral **before the end of week 5** in order to
 receive feedback onilne, or approach your tutor in a lab session for
