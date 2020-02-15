@@ -1,54 +1,35 @@
-{- 
-   CI505 Introduction to Functional Propgramming
-   Huffman Trees Exercise -- Encoding
--}
-module Huffman where
+# Huffman Trees
 
-import Data.Tree -- Used for pretty-printing trees
-import Data.Maybe
+Enter your solutions into the file [Huffman.hs](Huffman.hs). Use
+`cabal` to test and run the code.  
 
-{- A FreqTable is a list of pairs where the first element of each pair is
-an element and the second element is its frequency 
--}
+## Encoding
 
+After reading [the slides](../huffman-slides.pdf) about Huffman trees
+you should have an understanding of the data structures and algorithms
+involved. We will be modelling *frequence tables* as follows:
+
+```haskell
 type FreqTable a = [(a, Int)]
+```
 
-{-
-Types to represent the Huffman encoding.
--}
-data Bit        = L | R
-type Path       = [Bit]
-type HCode a    = [(a, [Path])]
-type HEncoded a = ([Path], HCode a)
+The module also contains a data type of binary trees, `HTree a`, where
+each node carries an int (representing frequency counts), and
+leaves carry an additional piece of data of type a (e.g. a char). A
+`HTree` is a Huffman Tree. In a leaf node, (`Leaf i c`), `i` represents
+the frequency of occurence of `c`. In a branch node (`Branch i l r`), `i`
+represents the combined frquencies of the left and right children.
 
-{- A data type of binary trees, HTree a, where each node
-carries an int (representing frequency counts) and and leaves carry an
-additional piece of data of type a (e.g. a char). A HTree is a Huffman
-Tree. In a leaf node, (Leaf i c), i will represent the frequency of
-occurence of c. In a branch node (Branch i l r), i will represent the
-combined frquencies of the left and right children.
-
-Your data type should derive the `Show` and `Eq` type classes. -}
-
+```haskell
 data HTree a = Leaf Int a | Branch Int (HTree a) (HTree a) deriving (Show, Eq)
+```
 
-{-
 1. Complete the `ftable` function which constructs the sorted
    frequency table for the input `[a]`.
--}
 
-fTable :: Ord a => [a] -> FreqTable a
-fTable xs = undefined
-
-{-
 2. Complete the `insert` function, which inserts a `HTree` node into a
    list sorted by ascending frequency.
--}
 
-insert :: HTree a -> [HTree a] -> [HTree a]
-insert h hs = undefined
-
-{-
 3. Merge a list of `HTree` nodes into a single `Maybe HTree`. If the input
 is empty, return `Nothing`. If the input contains a single element, we
 are done. Otherwise, do the following: 
@@ -58,15 +39,9 @@ are done. Otherwise, do the following:
       list without its first two elements,
     * call `merge` recursively on the new list.
 
-
 When merging two nodes, `n1` and `n2`, the node with the lowest frequency
 will be the left-hand child in the new `Branch` node.
--}
 
-merge :: [HTree a] -> Maybe (HTree a)
-merge hs = undefined
-
-{-
 4. Complete the `tree` function, which constructs the Huffman tree for
 the input `[a]`. Return `Nothing` if the input is empty.  Otherwise, do
 the following: 
@@ -75,35 +50,20 @@ the following:
 	* merge that list into a single tree by calling your `merge`
       function (which is the next problem).
 
--}
-
-tree :: Ord a => [a] -> Maybe (HTree a)
-tree str = undefined 
-
-{-
 5. Complete the `generateCode` function, which retrieves the code
    embodied by a Huffman tree. The function returns a `HCode`, which
    is a lookup table of `Code` values, each of which is a `Path` from
    the root to one of the leaves of the tree, indexed by the value
    that is found at the leaf.
--}
-
-generateCode :: Ord a => HTree a -> HCode a
-generateCode h = undefined
-{-
+   
 6. Complete the `encode` function, which creates the tree for the
    input, `str`, generates the code for that tree, and uses it to
-   encode `str`. It reutns a pair of the encoded input and the HCode
-used to encode it.
--}
+   encode `str`.
 
-encode :: Ord a => [a] -> HEncoded a
-encode str = undefined
-
-{-
 7. Complete the `decode` function, which takes some encoded input and
    a `HCode` object and returns the decoded result.
--}
 
-decode :: Ord a => [Path] -> HCode a -> [a]
-decode input code = undefined
+
+
+
+

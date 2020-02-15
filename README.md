@@ -42,11 +42,11 @@ on this and/or have a go at subsequent exercises.
 
 ## Week 8
 
-Read [these slides](labs/huffman-slides.pdf) on Huffman Trees, then [implement them](labs/Huffman-Trees.hs) in Haskell.
+Read [these slides](labs/huffman-slides.pdf) on Huffman Trees, then [implement them](labs/huffman/README.md) in Haskell.
 
 ## Week 9
 
-[Parsing and IO exercises](labs/Parsing/README.md).
+[Parsing and IO exercises](labs/parsing/README.md).
 
 ## Week 10 
 
