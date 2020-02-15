@@ -5,6 +5,7 @@
 module Huffman where
 
 import Data.Tree -- Used for pretty-printing trees
+import Data.Tree.Pretty 
 import Data.Maybe
 
 {- A FreqTable is a list of pairs where the first element of each pair is
@@ -12,6 +13,14 @@ an element and the second element is its frequency
 -}
 
 type FreqTable a = [(a, Int)]
+
+{-
+Types to represent the Huffman encoding.
+-}
+data PathPart a = L | R | E a            deriving Show
+type Path a     = [PathPart a]
+type HCode a    = [(a, Path a)]
+type HEncoded a = (Path a, HTree a)
 
 {- A data type of binary trees, HTree a, where each node
 carries an int (representing frequency counts) and and leaves carry an
@@ -24,30 +33,44 @@ Your data type should derive the `Show` and `Eq` type classes. -}
 
 data HTree a = Leaf Int a | Branch Int (HTree a) (HTree a) deriving (Show, Eq)
 
-{- 1. Construct the Huffman tree for the input [a]. Return Nothing if
-the input is empty.  Otherwise, do the following: . construct the
-frequency table for str . use the frequency table to create a list of
-Leaf nodes . merge that list into a single tree by calling your merge
-function
+{-
+1. Complete the `ftable` function which constructs the sorted
+   frequency table for the input `[a]`.
 -}
 
+fTable :: Ord a => [a] -> FreqTable a
+fTable = sort' . freq 
+    where freq [] = []
+          freq (c:cs) = freqInner (c,1) cs : freq (filter (/=c) cs)
+              where freqInner (d,n) [] = (d,n)
+                    freqInner (d,n) (e:es) = let m = if d==e then n+1 else n
+                                             in freqInner (d,m) es
 
-tree :: Ord a => [a] -> Maybe (HTree a)
-tree str = if not $ null str 
-           then merge $ map (\f -> Leaf (snd f) (fst f)) (fTable str)
-           else Nothing
+{-
+2. Complete the `insert` function, which inserts a `HTree` node into a
+   list sorted by ascending frequency.
+-}
 
-{- 2. Merge a list of HTree nodes into a single Maybe HTree. If the
-input is empty, return Nothing. If the input contains a single
-element, we are done. Otherwise, do the following: . create a Branch
-node from the first two elements in the input, . use your insert
-function to insert this new element in the right place in the new
-list, which is formed of the old list without its first two elements,
-. call merge recursively on the new list
+insert :: HTree a -> [HTree a] -> [HTree a]
+insert h [] = [h]
+insert h (t:ts) = if getFreq h < getFreq t then h:t:ts
+                  else t : insert h ts
 
-When merging two nodes, n1 and n2, the node with the lowest frequency
-will be the left-hand child in the new Branch node.  
--} 
+{-
+3. Merge a list of `HTree` nodes into a single `Maybe HTree`. If the input
+is empty, return `Nothing`. If the input contains a single element, we
+are done. Otherwise, do the following: 
+    * create a `Branch` node from the first two elements in the input,
+	* use your `insert` function (see below) to insert this new
+      element in the right place in the new list, which is formed of the old 
+      list without its first two elements,
+    * call `merge` recursively on the new list.
+
+
+When merging two nodes, `n1` and `n2`, the node with the lowest frequency
+will be the left-hand child in the new `Branch` node.
+-}
+
 merge :: [HTree a] -> Maybe (HTree a)
 merge [] = Nothing
 merge (x:[]) = Just x
@@ -59,22 +82,66 @@ merge (x:y:zs) = let cX = getFreq x
                  else 
                      merge $ insert (Branch i y x) zs
 
-{- 3. Insert a HTree node into a list sorted by ascending frequency.
--}
-insert :: HTree a -> [HTree a] -> [HTree a]
-insert h [] = [h]
-insert h (t:ts) = if getFreq h < getFreq t then h:t:ts
-                  else t : insert h ts
+{-
+4. Complete the `tree` function, which constructs the Huffman tree for
+the input `[a]`. Return `Nothing` if the input is empty.  Otherwise, do
+the following: 
+    * construct the frequency table for `str`,
+	* use the frequency table to create a list of Leaf nodes, 
+	* merge that list into a single tree by calling your `merge`
+      function (which is the next problem).
 
-{- 4. Construct the sorted frequency table for the input [a].
 -}
-fTable :: Ord a => [a] -> FreqTable a
-fTable = sort' . freq 
-    where freq [] = []
-          freq (c:cs) = freqInner (c,1) cs : freq (filter (/=c) cs)
-              where freqInner (d,n) [] = (d,n)
-                    freqInner (d,n) (e:es) = let m = if d==e then n+1 else n
-                                             in freqInner (d,m) es
+
+tree :: Ord a => [a] -> Maybe (HTree a)
+tree str = if not $ null str 
+           then merge $ map (\f -> Leaf (snd f) (fst f)) (fTable str)
+           else Nothing
+
+{-
+5. Complete the `generateCode` function, which retrieves the code
+   embodied by a Huffman tree. The function returns a `HCode`, which
+   is a lookup table of `Code` values, each of which is a `Path` from
+   the root to one of the leaves of the tree, indexed by the value
+   that is found at the leaf.
+-}
+
+generateCode :: Ord a => HTree a -> HCode a
+generateCode (Leaf i c)     = []
+generateCode (Branch i l r) = map toLookup $ (pathsInner L l) ++ (pathsInner R r)
+  where pathsInner dir (Leaf _ c)     = [[dir, E c]]
+        pathsInner dir (Branch _ l r) = (map (dir :) (pathsInner L l)) ++ (map (dir :) (pathsInner R r))
+        toLookup ps                   = let (E c) = last ps in (c, init ps)
+
+{-
+6. Complete the `encode` function, which creates the tree for the
+   input, `str`, generates the code for that tree, and uses it to
+   encode `str`. It reutns a pair of the encoded input and the HCode
+used to encode it.
+-}
+
+encode :: Ord a => [a] -> Maybe (HEncoded a)
+encode str = case tree str of
+  Nothing -> Nothing
+  Just t  -> let code = generateCode t in Just (concatMap (fromJust . (\c -> lookup c code)) str, t)
+
+
+{-
+7. Complete the `decode` function, which takes some encoded input and
+   a `HCode` object and returns the decoded result.
+-}
+
+--decode :: Ord a => Path a -> HTree a -> [a]
+decode t pps = decodeInner t pps
+  where decodeInner (Leaf _ c) []          = [c]
+        decodeInner (Leaf _ c) input       = c : decodeInner t input
+        decodeInner (Branch _ l _) (L:ps)  = decodeInner l ps 
+        decodeInner (Branch _ _ r) (R:ps)  = decodeInner r ps
+        decodeInner _ []                   = []
+
+------------
+-- Helper functions
+------------
 
 -- A getter for the frequency count in a HTree node.
 getFreq :: HTree a -> Int
@@ -87,3 +154,16 @@ sort' [] = []
 sort' (x:xs) = (sort' lt) ++ [x] ++ (sort' gt)
     where lt = filter (\(y,z) -> z < snd x) xs
           gt = filter (\(y,z) -> z >= snd x) xs
+
+-- Drawing trees
+
+toDataTree :: Show a => HTree a -> Data.Tree.Tree String
+toDataTree (Leaf i c) = Node (showLeafData c i) []
+toDataTree (Branch i l r) = Node (show i) [toDataTree l, toDataTree r]
+
+showLeafData :: (Show a, Show b) => a -> b -> String
+showLeafData x y = (show y)++":"++(show x)
+
+printMaybeTree :: Show a => Maybe (HTree a) -> IO ()
+printMaybeTree Nothing  = putStrLn ""
+printMaybeTree (Just t) = putStrLn $ drawVerticalTree $ toDataTree t
