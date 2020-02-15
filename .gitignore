@@ -1,14 +1,14 @@
 dist
-dist-*
-**/dist*
+dist-newstyle
 cabal-dev
 *.o
+*~
 *.hi
-*.hie
 *.chi
 *.chs.h
 *.dyn_o
 *.dyn_hi
+.virtualenv
 .hpc
 .hsenv
 .cabal-sandbox/

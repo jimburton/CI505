@@ -50,7 +50,7 @@ matches the head of the list. If not, the function should return the result
 of calling itself on the tail of the list. Your function will have this structure: 
 
 ```haskell
-memb: Eq a => [a] -> a -> Bool
+memb :: Eq a => [a] -> a -> Bool
 memb [] x     = ...
 memb (y:ys) x = ...
 ```

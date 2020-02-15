@@ -1,10 +1,10 @@
-# Week 2 -- datatypes and typeclasses
+# Datatypes and typeclasses
 
-Complete the exercises below in a new Haskell script, `Exercises2.hs`,
+Complete the exercises below in a new Haskell script, `Peano.hs`,
 which begins with the following declaration:
 
 ```Haskell
-  module Exercises2 where
+  module Peano where
 ```
 
 In the lecture on algebraic data types, the type of natural numbers
