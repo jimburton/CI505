@@ -49,7 +49,7 @@ import System.IO
 import Log
 ```
 
-which sets up your file as a module named `LogAnalysis`, and imports the
+which sets up your file as a module named `Main`, and imports the
 `System.IO` and `Log` modules so you can use the types and functions they
 provides. 
 
