@@ -26,6 +26,18 @@ combined frquencies of the left and right children.
 data HTree a = Leaf Int a | Branch Int (HTree a) (HTree a) deriving (Show, Eq)
 
 {-
+0. Make HTree into an instance of Ord -- t1 is less than t2 if the Int
+label of t1 is smaller than that of t2 (it doesn't matter whether
+either is a Leaf or a Branch).
+-}
+
+instance Eq a => Ord (HTree a) where
+  (<=) (Leaf i _) (Leaf j _)         = i<=j
+  (<=) (Leaf i _) (Branch j _ _)     = i<=j
+  (<=) (Branch i _ _) (Leaf j _)     = i<=j
+  (<=) (Branch i _ _) (Branch j _ _) = i<=j
+  
+{-
 Types to represent the Huffman encoded data.
 -}
 data PathPart a = L | R | E a            deriving Show
