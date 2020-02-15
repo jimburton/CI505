@@ -1,4 +1,4 @@
--- This file accompanies CI285 Exercise 7
+-- Lab exercise for CI505
 
 module Log where
 

@@ -40,11 +40,10 @@ data LogMessage  = LogMessage MessageType TimeStamp String deriving (Show, Eq)
 ```
 
 We've provided you with a module `Log.hs` containing these datatype declarations, along
-with some other useful functions. Enter your solutions in a new file called
-`LogAnalysis.hs`, the first few lines of which should look like this:
+with some other useful functions. Enter your solutions in the `Main.hs` file, the first few lines of which looks like this:
 
 ```Haskell
-module LogAnalysis where
+module Main where
 
 import System.IO
 import Log
