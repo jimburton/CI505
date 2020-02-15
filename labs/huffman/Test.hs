@@ -79,8 +79,8 @@ prop_merge xs | null xs        = (merge xs) == Nothing
 
 prop_codec :: Ord a => [a] -> Bool
 prop_codec s = case encode s of
-  Nothing       -> null s
-  Just (path, t) -> s == decode t path
+  Nothing        -> null s
+  Just (t, path) -> s == decode t path
 
 
 {-

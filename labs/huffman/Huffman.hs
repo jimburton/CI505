@@ -25,6 +25,10 @@ combined frquencies of the left and right children.
 
 data HTree a = Leaf Int a | Branch Int (HTree a) (HTree a) deriving (Show, Eq)
 
+getFreq :: HTree a -> Int
+getFreq (Branch i _ _) = i
+getFreq (Leaf i _)     = i
+
 {-
 0. Make HTree into an instance of Ord -- t1 is less than t2 if the Int
 label of t1 is smaller than that of t2 (it doesn't matter whether
@@ -43,7 +47,7 @@ Types to represent the Huffman encoded data.
 data PathPart a = L | R | E a            deriving Show
 type Path a     = [PathPart a]
 type HCode a    = [(a, Path a)]
-type HEncoded a = (Path a, HTree a)
+type HEncoded a = (HTree a, Path a)
 
 {-
 1. Complete the `ftable` function which constructs the sorted
@@ -65,6 +69,7 @@ sort' (x:xs) = sort' lt ++ [x] ++ sort' gt
     where lt = filter (\(y,z) -> z < snd x) xs
           gt = filter (\(y,z) -> z >= snd x) xs
 
+
 {-
 2. Complete the `insert` function, which inserts a `HTree` node into a
    list sorted by ascending frequency.
@@ -74,9 +79,6 @@ insert :: HTree a -> [HTree a] -> [HTree a]
 insert h [] = [h]
 insert h (t:ts) = if getFreq h < getFreq t then h:t:ts
                   else t : insert h ts
-
-getFreq (Branch i _ _) = i
-getFreq (Leaf i _)     = i
 
 {-
 3. Merge a list of `HTree` nodes into a single `Maybe HTree`. If the input
@@ -144,7 +146,7 @@ used to encode it.
 
 encode :: Ord a => [a] -> Maybe (HEncoded a)
 encode str = tree str >>= \t -> let code = generateCode t in
-  return (concat $ concat <$> sequenceA $ map (`lookup` code) str, t)
+  return (t, concat $ concat <$> sequenceA $ map (`lookup` code) str)
 
 
 {-
