@@ -132,7 +132,7 @@ generateCode (Leaf i c)     = []
 generateCode (Branch i l r) = map toLookup $ paths L l ++ paths R r
   where paths dir (Leaf _ c)     = [[dir, E c]]
         paths dir (Branch _ l r) = map (dir :) (paths L l) ++ map (dir :) (paths R r)
-        toLookup ps                   = let (E c) = last ps in (c, init ps)
+        toLookup ps              = let (E c) = last ps in (c, init ps)
 
 {-
 6. Complete the `encode` function, which creates the tree for the
