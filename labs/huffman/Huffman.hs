@@ -55,9 +55,9 @@ fTable :: Ord a => [a] -> FreqTable a
 fTable = sort' . freq 
     where freq [] = []
           freq (c:cs) = freqInner (c,1) cs : freq (filter (/=c) cs)
-              where freqInner (d,n) [] = (d,n)
-                    freqInner (d,n) (e:es) = let m = if d==e then n+1 else n
-                                             in freqInner (d,m) es
+          freqInner (d,n) [] = (d,n)
+          freqInner (d,n) (e:es) = let m = if d==e then n+1 else n
+                                   in freqInner (d,m) es
 
 -- Pseudo-QuickSort 
 sort' :: Ord b => [(a,b)] -> [(a,b)]
