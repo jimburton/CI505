@@ -36,10 +36,7 @@ either is a Leaf or a Branch).
 -}
 
 instance Eq a => Ord (HTree a) where
-  (<=) (Leaf i _) (Leaf j _)         = i<=j
-  (<=) (Leaf i _) (Branch j _ _)     = i<=j
-  (<=) (Branch i _ _) (Leaf j _)     = i<=j
-  (<=) (Branch i _ _) (Branch j _ _) = i<=j
+  (<=) t u = getFreq t <= getFreq u
   
 {-
 Types to represent the Huffman encoded data.
