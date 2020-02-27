@@ -226,12 +226,12 @@ vIt@15 [vitals]
 
 One more very useful thing `cabal` can do for you is to start the interpreter, `ghci`,
 loading all the modules and dependencies that it needs to run. This is done with the `repl`
-command. Run the program in the REPL and call its `main` method:
+command. Run the program in the REPL and call its `main` function:
 
 ```
 MkPasswd$ cabal repl
 ...
-*Main> :main
+*Main> main
 K3MP'5
 ```
 
