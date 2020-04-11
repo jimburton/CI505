@@ -1,4 +1,73 @@
-# Working with projects
+# Haskell development environment
+
+## Editors for Haskell development
+
+There are quite a few editors that support Haskell development,
+ranging from ones which aim to be a full-on IDE to ones which just
+provide a few helpful features such as syntax highlighting. You can do
+everything you need to do with a basic editor and the terminal, and
+it's important to know how to do that, but as your programs become
+longer and solve more complex problems features like autocompletion,
+refactoring, integration with **build tools** and **version control**
+start to make a big difference to productivity.
+
+There is a list of options which is kept up to date on the Haskell
+wiki [here](https://wiki.haskell.org/IDEs).
+
+I think the best option is to learn one of the "poweruser" editors,
+`vim` or `emacs` - I use `emacs`. Once you get used to the quirky
+keybindings and terminology it is a *very* powerful editor that has
+modes for every programming language under the sun. Start with the
+tutorial. Open emacs and type `C-h t`. That is, hold down `Ctrl` and press
+`h`, let go of both and press `t`). 
+
+There is some guidance on getting set up for developing haskell in
+emacs [here](https://wiki.haskell.org/Emacs). In short, the `emacs`
+"major mode" called `haskell-mode` provides the basic syntax
+highlighting, ability to launch `ghci` and so on. You can install a
+"minor mode" alongside that to provide an interface to the
+interpreter, allowing you to query the type of expressions and so
+on. Currently (2020), I like [`dante`](https://github.com/jyp/dante). 
+You can give this combination a try by adding the following to your
+`emacs` config file, `~/.emacs`:
+
+```
+(require 'package)
+(add-to-list 'package-archives
+	 '("melpa" . "https://melpa.org/packages/"))
+
+(package-initialize)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+
+(use-package haskell-mode
+  :ensure t)
+(add-hook 'haskell-mode-hook #'hindent-mode)
+(let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+(setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
+(add-to-list 'exec-path my-cabal-path))
+(require 'haskell-interactive-mode)
+(require 'haskell-process)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+(use-package dante
+  :ensure t
+  :after haskell-mode
+  :commands 'dante-mode
+  :init
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  (add-hook 'haskell-mode-hook 'dante-mode))
+```
+
+
+## Working with projects
 
 If you're working on a very small script or program that fits into one
 module and has no external dependencies (i.e. you aren't importing
@@ -237,4 +306,5 @@ K3MP'5
 
 See the
 [docs](https://www.haskell.org/cabal/users-guide/developing-packages.html)
-for more information.
+for full information on `cabal`.
+
