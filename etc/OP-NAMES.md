@@ -31,7 +31,6 @@ In addition to that Haskell code is full of other characters like `::` and `->` 
 may wonder how to pronounce. Here are some of the
 most common nicknames:
 
-
 | Operator | Name             | Example                                   |
 ---------------------------------------------------------------------------
 | `::`     | has type / as    | `f x :: Int`: `f x` *has type* `Int`      |
