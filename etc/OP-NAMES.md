@@ -51,7 +51,7 @@ most common nicknames:
 | `!`      | index / strict   | `foo !x`: `foo` *strict* `x`              |  
 | `<\|>`    | or / alternative | `expr <\|> term`: `expr` *or* `term`       |
 | `\`      | lambda           |                                           |
-| `@`      | as               | `foo ll@(l:ls)`: `foo ll` *as* ` cons ls` |
+| `@`      | as               | `foo ll@(l:ls)`: `foo ll` *as* `l cons ls` |
 | `~`      | lazy             | `foo ~(a,b)`: `foo` *lazy pair* `a, b`    |
 
 
