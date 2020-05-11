@@ -24,7 +24,7 @@ True
 Haskell code typically includes lots of operators, both in the
 standard library and in other people's code. This is especially true
 with code that uses Functors, Applicative Functors, Monads and so
-so. Since we often need to read our code out loud to others (and
+on. Since we often need to read our code out loud to others (and
 ourselves!), these things have developed names. 
 
 In addition to that Haskell code is full of other characters like `::` and `->` that you 
