@@ -40,6 +40,8 @@ most common nicknames:
 | `[]`     | the empty list   |                                           |
 | `++`     | append           | `xs ++ ys`: `xs` *append* `ys`            |
 | `->`     | to               | `a -> b`: `a` *to* `b`                    |
+| `\`      | lambda           |                                           |
+| `@`      | as               | `foo ll@(l:ls)`: `foo ll` *as* `l cons ls` |
 | `>>=`    | bind             |                                           | 
 | `<-`     | bind             | (as it desugars to `>>=`)                 |
 | `>>`     | then             |                                           |
@@ -50,8 +52,6 @@ most common nicknames:
 | `!!`     | index            |                                           |
 | `!`      | index / strict   | `foo !x`: `foo` *strict* `x`              |  
 | `<\|>`    | or / alternative | `expr <\|> term`: `expr` *or* `term`       |
-| `\`      | lambda           |                                           |
-| `@`      | as               | `foo ll@(l:ls)`: `foo ll` *as* `l cons ls` |
 | `~`      | lazy             | `foo ~(a,b)`: `foo` *lazy pair* `a, b`    |
 
 
