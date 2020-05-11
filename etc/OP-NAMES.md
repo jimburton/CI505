@@ -34,7 +34,7 @@ most common nicknames:
 | Operator | Name             | Example                                   |
 | -------- | ---------------- | ----------------------------------------- |
 | `::`     | has type / as    | `f x :: Int`: `f x` *has type* `Int`      |
-| `:`      | cons             | `'c':"at"`: `c` *cons* `"at"`             |
+| `:`      | cons             | `'c':"at"`: `c` *cons* `at`             |
 | `$`      | dollar / apply   | usually no need to pronounce this         |
 | `.`      | compose / dot / after  | `f . g`: `f` *after* `g`                  |
 | `[]`     | the empty list   |                                           |
@@ -49,7 +49,7 @@ most common nicknames:
 | `<*>`    | ap(ply)          | (as it is the same as `Control.Monad.ap`) |
 | `!!`     | index            |                                           |
 | `!`      | index / strict   | `foo !x`: `foo` *strict* `x`              |  
-| `<|>`    | or / alternative | `expr <|> term`: `expr` *or* `term`       |
+| `<\|>`    | or / alternative | `expr <\|> term`: `expr` *or* `term`       |
 | `\`      | lambda           |                                           |
 | `@`      | as               | `foo ll@(l:ls)`: `foo ll` *as* ` cons ls` |
 | `~`      | lazy             | `foo ~(a,b)`: `foo` *lazy pair* `a, b`    |
