@@ -32,7 +32,7 @@ may wonder how to pronounce. Here are some of the
 most common nicknames:
 
 | Operator | Name             | Example                                   |
----------------------------------------------------------------------------
+| -------- | ---------------- | ----------------------------------------- |
 | `::`     | has type / as    | `f x :: Int`: `f x` *has type* `Int`      |
 | `:`      | cons             | `'c':"at"`: `c` *cons* `"at"`             |
 | `$`      | dollar / apply   | usually no need to pronounce this         |
