@@ -32,6 +32,8 @@ feedback in person.
 **Start work on the assignment**. From now on you can carry on working
 on this and/or have a go at subsequent exercises.
 
+You should also look at [How to pronounce Haskell operators](etc/OP-NAMES.md).
+
 ## Week 6
 
 [Spamfilter program](labs/Spam.md)

@@ -7,12 +7,12 @@ the second one comes after it. Define an operator just like any other function
 but put its name in brackets:
 
 ```
--- Logical Exclusive Or
+-- Logical Exclusive Or, pronounced "xor"
 (<+>) :: Bool -> Bool -> Bool
 (<+>) True p  = not p
 (<+>) False p = p
 
-> True <+> True
+> True <+> True -- pronounce it "true xor true"
 False
 > False <+> True
 True
