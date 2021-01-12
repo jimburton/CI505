@@ -50,6 +50,8 @@ Read [these slides](labs/huffman-slides.pdf) on Huffman Trees, then [implement t
 
 [Parsing and IO exercises](labs/parsing/README.md).
 
+[Parsing using AttoParsec](https://github.com/himburton/simple-log-parser).
+
 ## Week 10 
 
 [Webservices with Haskell](https://github.com/jimburton/haskell-webservice/blob/master/README.md). 
