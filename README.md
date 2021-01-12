@@ -48,7 +48,7 @@ Read [these slides](labs/huffman-slides.pdf) on Huffman Trees, then [implement t
 
 ## Week 9
 
-[Parsing and IO exercises](labs/parsing/README.md).
+[Parsing (by hand) and IO exercises](labs/parsing/README.md).
 
 [Parsing using AttoParsec](https://github.com/jimburton/simple-log-parser).
 
