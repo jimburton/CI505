@@ -134,5 +134,5 @@ structure in the lambda to pattern match on the different values of
    ```
    decodeRLE xs = concatMap (\rle -> case rle of
                                       (Single x)     -> ...
-						              (Multiple i x) -> ...) xs 
+									  (Multiple i x) -> ...) xs 
    ```
