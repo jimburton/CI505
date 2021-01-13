@@ -16,56 +16,75 @@ Add your solutions to the following problems to the file you created last time. 
    be compared for equality, i.e. is a member of the `Eq` type
    class. So your function should have this type signature:
 	
-```
-pack :: Eq a => [a] -> [[a]]
-```
+   ```
+   pack :: Eq a => [a] -> [[a]]
+   ```
 
-Example:
+   Note that the type of the result is a list of lists. Example:
 
-```haskell
-λ> pack ['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 
+   ```haskell
+   λ> pack ['a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 
              'a', 'd', 'e', 'e', 'e', 'e']
-["aaaa","b","cc","aa","d","eeee"]
-``` 
+   ["aaaa","b","cc","aa","d","eeee"]
+   λ> pack [1, 2, 2, 2, 1, 3, 3, 2, 2]
+   [[1], [2, 2, 2], [1], [3, 3], [2, 2]]
+   ["aaaa","b","cc","aa","d","eeee"]
+   ``` 
 
-**Hint** One way to achieve this is by using the functions [takeWhile](https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:takeWhile) and [dropWhile](https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:dropWhile).
+   **Hint** One way to achieve this is by using the functions 
+[takeWhile](https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:takeWhile) 
+and [dropWhile](https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:dropWhile).
+Try experimenting with `dropWhile` and `takeWhile` in the REPL:
+
+   ```
+   λ> :t takeWhile
+   takeWhile :: (a -> Bool) -> [a] -> [a]
+   λ> takeWhile (\x -> x=='a') "aaabcd"
+   "aaa"
+   λ> :t dropWhile
+   dropWhile :: (a -> Bool) -> [a] -> [a]
+   λ> dropWhile (\x -> x=='a') "aaabcd"
+   "bcd"
+   ```
 	
 	
 2. Run-length encoding of a list. Use your `pack` function to
    implement the so-called *run-length encoding* data compression
-   method. Consecutive duplicates of elements are encoded as pairs `(n, c)`, where `n` is the number of duplicates of the element `c`.
+   method. Consecutive duplicates of elements are encoded as pairs
+   `(n, c)`, where `n` is the number of duplicates of the element `c`.
 
-Example:
-```haskell
-λ> encode "aaaabccaadeeee"
-[(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]
-```
+   Example:
 
-**Hint:** `map` a lambda function over the list of lists that you get
+   ```haskell
+   λ> encode "aaaabccaadeeee"
+   [(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]
+   ```
+
+   **Hint:** `map` a lambda function over the list of lists that you get
 back from `pack`. This function will take a list as input and return a
 pair of its length and its first element.
 
 3. Given a run-length code list generated as in the previous problem, construct its uncompressed version.
 
-Example:
-```haskell
-λ> decode [(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]
-"aaaabccaadeeee"
-```
+   Example:
+   ```haskell
+   λ> decode [(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]
+   "aaaabccaadeeee"
+   ```
 
-**Hint:** Again, a good way to start is to `map` a lambda over the
+   **Hint:** Again, a good way to start is to `map` a lambda expression over the
 input. This function will take a pair, `(i,c)`. Use the functions
 `repeat` and `take` to create a list of `c` values with length
-`i`. This will result in a **list of lists** which you can flatten with
+`i`. This will result in a list of lists which you can flatten with
 the `concat` function. 
 
-So `decode` could have this kind of structure:
+   So `decode` could have this kind of structure:
 
-```haskell
-decode xs = concat (map (...) xs)
-```
+   ```haskell
+   decode xs = concat (map (...) xs)
+   ```
 
-Using `map` then `concat` is very common -- **there is a function that
+   Using `map` then `concat` is very common -- **there is a function that
 does them both for you**:
 [`concatMap`](https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:concatMap). Use
 that instead of the structure suggested above.
@@ -82,26 +101,26 @@ that instead of the structure suggested above.
 
 	Example:
 
-```haskell
-λ> encodeRLE "aaaabccaadeeee"
-[Multiple 4 'a',Single 'b',Multiple 2 'c',
- Multiple 2 'a',Single 'd',Multiple 4 'e']
-```
+   ```haskell
+   λ> encodeRLE "aaaabccaadeeee"
+   [Multiple 4 'a',Single 'b',Multiple 2 'c',
+   Multiple 2 'a',Single 'd',Multiple 4 'e']
+   ```
 
-**Hint:** First, process the input with `encode`, then `map` over the
+   **Hint:** First, process the input with `encode`, then `map` over the
 result. The lambda that you map will take a pair, `(i,c)`, and use one
 of the `RLE` constructors if `i==1`, and a different one otherwise.
 
 5. Given a run-length code list generated as in the previous problem, construct its uncompressed version.
 
-Example:
-```haskell
-λ> decodeRLE [Multiple 4 'a',Single 'b',Multiple 2 'c',
+   Example:
+   ```haskell
+   λ> decodeRLE [Multiple 4 'a',Single 'b',Multiple 2 'c',
         Multiple 2 'a',Single 'd',Multiple 4 'e']
-"aaaabccaadeeee"
-```
+   "aaaabccaadeeee"
+   ```
 
-**Hint:** Again, you can use `concatMap`. This time the lambda that
+   **Hint:** Again, you can use `concatMap`. This time the lambda that
 you map over the input will take an `RLE a` value. Use the `case`
 structure in the lambda to pattern match on the different values of
 `RLE`.
