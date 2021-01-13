@@ -126,7 +126,7 @@ drop' n []     = ...
 drop' n (x:xs) = ...
 ```
 
-So you need to think about how to drop zero elements from a list, how
+    So you need to think about how to drop zero elements from a list, how
 to drop `n` (any number) of elements from the empty list, and how to drop `n`
 elements from a list with a head and a tail (recursively, drop the head then
 drop `n-1` elements from the tail.
