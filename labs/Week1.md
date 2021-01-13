@@ -100,7 +100,7 @@ found matches the head of the list. If not, the function should return
 the result of calling itself on the tail of the list. Your function
 will have the structure below. 
 
-Note the *typeclass constraint* `Eq a` -- the type of the things in
+    Note the *typeclass constraint* `Eq a` -- the type of the things in
 the list, `a`, must be a type that can be compared for equality:
 
 ```haskell
