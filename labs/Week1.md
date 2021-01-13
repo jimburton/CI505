@@ -34,7 +34,7 @@ package flags have changed, resetting and loading new packages...
 Loaded GHCi configuration from /home/jb259/.ghc/ghci.conf
 λ> 
 ```
-You can type any Haskell expression in to this "REPL" (Read-Eval-Print-Loop) and it will be evaluated. 
+You can type any Haskell expression into this "REPL" (Read-Eval-Print-Loop) and it will be evaluated. 
 Enter a list of the integers from 1 to 10 using the range syntax:
 
 ```
@@ -68,7 +68,7 @@ Going back to ghci, load your new file and test it like so:
 ```
 
 Add your solutions to the following problems to Exercises.hs. When you
-make changes you need to reload the file in ghci:
+make changes you need to reload the file in `ghci`:
 
 ```
 > :reload Exercises
@@ -76,7 +76,7 @@ make changes you need to reload the file in ghci:
 
 ## Exercises
 
-1. Edit `Exercises.hs` to write a function `square` which returns the square
+1. Edit `Exercises.hs` to write a function `square :: Int -> Int` which returns the square
 of a number. Test your work in ghci as follows:
 
 ```
@@ -84,7 +84,7 @@ of a number. Test your work in ghci as follows:
 > square 5
 ```
 
-What happens when you execute `square True`?
+Try calling `square` with a few numbers. What happens when you execute `square True`?
 
 2. Use `square` to write a function `sumsquare :: Int -> Int -> Int` which
 returns the sum of the squares of its two arguments.
@@ -98,7 +98,8 @@ what happens if an empty list is supplied, should return `False`
 deals with non-empty lists, should return `True` if the element to be
 found matches the head of the list. If not, the function should return
 the result of calling itself on the tail of the list. Your function
-will have this structure:
+will have the structure below. Not the *typeclass constraint* `Eq a` -- the type
+of the things in the list, `a`, must be a type that can be compared for equality:
 
 ```haskell
 memb :: Eq a => [a] -> a -> Bool
