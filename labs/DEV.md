@@ -200,7 +200,7 @@ $ cd change
 Now you can use `cabal` to run the program:
 
 ```
-change$ cabal run
+change$ cabal run change
 ...
 Enter a number and I'll count out the change
 44
@@ -223,6 +223,9 @@ From the `cabal` file, you can see that the entry point for the
 application is the file `src/Main.hs`. Open this file and read the
 code. Don't worry if you don't understand all of it at this stage, but
 look out for the `main` method -- this is the first function to run.
+Note that most of the code is actually in the module called `Change`,
+which is imported in the `Main` module. Open `Change.hs` and read this
+file too.
 
 
 Next, we will look at a project which is still very simple but
