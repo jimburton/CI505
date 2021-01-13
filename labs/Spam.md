@@ -56,7 +56,7 @@ messages and are named to indicate whether they are supposed to be ham or spam:
    $ git checkout -b mybranch
    ```
 
-  As your first improvement, create a "usage" (or "help") message that
+   As your first improvement, create a "usage" (or "help") message that
   explains how to use the program. This message should be printed when
   the (new) `help` option is supplied, and also when no options or an
   unrecognised option is supplied. Write the functions that do this
@@ -66,7 +66,7 @@ messages and are named to indicate whether they are supposed to be ham or spam:
   directory. If the path to a directory is supplied, the files within the directory are read
   recursively and used for training. 
   
-  The `classify` option, on the other hand, can only deal with the path to a single
+   The `classify` option, on the other hand, can only deal with the path to a single
   file. Modify the program so that all messages in a directory can be classified at once. Start
   off by reading the functions in the `Train` module, especially
 
@@ -74,7 +74,7 @@ messages and are named to indicate whether they are supposed to be ham or spam:
    getRecursiveContents :: FilePath -> IO [FilePath]
    ```
 
-  Keep in mind the design goal of a clear separation between pure and impure code -- that is,
+   Keep in mind the design goal of a clear separation between pure and impure code -- that is,
   make sure that you don't pollute the pure code in the `Classify` module with IO actions.
 
 
