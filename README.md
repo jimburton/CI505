@@ -17,7 +17,9 @@ practice with Haskell.
 
 ## Week 3
 
-Read the information on the [Haskell dev environment](labs/DEV.md).
+Read the information on the [Haskell dev
+environment](labs/DEV.md). Carry on using a basic editor if you prefer to. Follow the instructions
+on using `cabal`, the Haskell build tool.
 
 ## Week 4
 
