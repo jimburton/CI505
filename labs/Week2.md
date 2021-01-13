@@ -48,10 +48,11 @@ Try experimenting with `dropWhile` and `takeWhile` in the REPL:
    ```
 	
 	
-2. Run-length encoding of a list. Use your `pack` function to
-   implement the so-called *run-length encoding* data compression
-   method. Consecutive duplicates of elements are encoded as pairs
-   `(n, c)`, where `n` is the number of duplicates of the element `c`.
+2. Create the *run-length encoding* of a list, `encode :: Eq a => [a]
+   -> [(Int, a)]`. Use your `pack` function to implement the so-called
+   *run-length encoding* data compression method. Consecutive
+   duplicates of elements are encoded as pairs `(n, c)`, where `n` is
+   the number of duplicates of the element `c`.
 
    Example:
 
@@ -64,7 +65,9 @@ Try experimenting with `dropWhile` and `takeWhile` in the REPL:
 back from `pack`. This function will take a list as input and return a
 pair of its length and its first element.
 
-3. Given a run-length code list generated as in the previous problem, construct its uncompressed version.
+3. Given a run-length code list generated as in the previous problem,
+   construct its uncompressed version with a function called `decode
+   :: Eq a => [(Int, a)] -> [a]`.
 
    Example:
    ```haskell
@@ -96,8 +99,9 @@ that instead of the structure suggested above.
    `Multiple Int a` to represent several consecutive occurrences of a
    value. 
    
-   Create a modified version of the `encode` function that
-   produces a list of `RLE a` values instead of pairs.
+   Create a modified version of the `encode` function that produces a
+   list of `RLE a` values instead of pairs -- `encodeRLE :: Eq a =>
+   [a] -> [RLE a]`.
 
 	Example:
 
@@ -111,7 +115,9 @@ that instead of the structure suggested above.
 result. The lambda that you map will take a pair, `(i,c)`, and use one
 of the `RLE` constructors if `i==1`, and a different one otherwise.
 
-5. Given a run-length code list generated as in the previous problem, construct its uncompressed version.
+5. Given a run-length code list generated as in the previous problem,
+   construct its uncompressed version -- `decodeRLE :: Eq a => [RLE a]
+   -> [a]`.
 
    Example:
    ```haskell
@@ -123,4 +129,10 @@ of the `RLE` constructors if `i==1`, and a different one otherwise.
    **Hint:** Again, you can use `concatMap`. This time the lambda that
 you map over the input will take an `RLE a` value. Use the `case`
 structure in the lambda to pattern match on the different values of
-`RLE`.
+`RLE`:
+
+   ```
+   decodeRLE xs = concatMap (\rle -> case rle of
+                                      (Single x)     -> ...
+						              (Multiple i x) -> ...) xs 
+   ```
