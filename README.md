@@ -32,9 +32,12 @@ feedback in person.
 ## Week 5
 
 **Start work on the assignment**. From now on you can carry on working
-on this and/or have a go at subsequent exercises.
+on this in between working on the subsequent exercises.
 
 You should also look at [How to pronounce Haskell operators](etc/OP-NAMES.md).
+
+If you want an additional exercise this week, have a go at 
+[working with typeclasses](labs/Typeclasses.md). 
 
 ## Week 6
 
@@ -42,11 +45,14 @@ You should also look at [How to pronounce Haskell operators](etc/OP-NAMES.md).
 
 ## Week 7
 
-[Working with typeclasses](labs/Typeclasses.md).
+Read [these slides](labs/huffman-slides.pdf) on Huffman Trees, then [implement them](labs/huffman/README.md) in Haskell.
+
 
 ## Week 8
 
-Read [these slides](labs/huffman-slides.pdf) on Huffman Trees, then [implement them](labs/huffman/README.md) in Haskell.
+Complete the exercise on the
+[change](https://github.com/jimburton/change) repository to make it
+use the `State` monad.
 
 ## Week 9
 
