@@ -98,8 +98,10 @@ what happens if an empty list is supplied, should return `False`
 deals with non-empty lists, should return `True` if the element to be
 found matches the head of the list. If not, the function should return
 the result of calling itself on the tail of the list. Your function
-will have the structure below. Not the *typeclass constraint* `Eq a` -- the type
-of the things in the list, `a`, must be a type that can be compared for equality:
+will have the structure below. 
+
+Note the *typeclass constraint* `Eq a` -- the type of the things in
+the list, `a`, must be a type that can be compared for equality:
 
 ```haskell
 memb :: Eq a => [a] -> a -> Bool
