@@ -214,7 +214,9 @@ project folder:
 
 ```
 change$ ls
-change.cabal  ChangeLog.md  LICENSE  README.md  Setup.hs  src  TAGS
+cabal.project.local  ChangeLog.md   LICENSE    Setup.hs  TAGS
+change.cabal         dist-newstyle  README.md  src       test
+
 ```
 The main things to notice are the `src` folder, which is where the code
 lives, and the config file `change.cabal`. Open the config file and read the contents. 
@@ -227,25 +229,28 @@ Note that most of the code is actually in the module called `Change`,
 which is imported in the `Main` module. Open `Change.hs` and read this
 file too.
 
+The `test` folder contains tests for the project. Haskell testing will be 
+discussed later in the module. For now, use `cabal` to run the tests,
+noting the names of the two test-suites given in `change.cabal`.
+
 
 Next, we will look at a project which is still very simple but
-slightly more realistic because it uses some libraries and comes with
-tests. `MkPasswd` is a program that generates new passwords of varying
-strength. Clone the repository from github and `cd` into the top-level
-directory:
+slightly more realistic because it uses some libraries. `mkpasswd` is
+a program that generates new passwords of varying strength. Clone the
+repository from github and `cd` into the top-level directory:
 
 ```
-$ git clone https://github.com/jimburton/MkPasswd
-Cloning into 'MkPasswd'...
+$ git clone https://github.com/jimburton/mkpasswd
+Cloning into 'mkpasswd'...
 ...
-$ cd MkPasswd
+$ cd mkpasswd
 ```
 
 Take a look at the `cabal` config file for the new project,
-`mkPasswd.cabal`. This is the block (or "stanza") that defines the program to be built:
+`mkpasswd.cabal`. This is the block (or "stanza") that defines the program to be built:
 
 ```
-executable mkPasswd
+executable mkpasswd
   main-is: Main.hs             
   other-modules:       MkPasswd.MkPasswd
                      , MkPasswd.Types
@@ -267,9 +272,9 @@ to run. Now run the program, followed by its tests:
 
 
 ```
-MkPasswd$ cabal run mkPasswd
+$ cabal run mkpasswd
 ...
-MkPasswd$ cabal run test-mkPasswd
+$ cabal run test-mkpasswd
 ```
 
 This program takes a variety of flags (or options) on the command line that govern
@@ -281,7 +286,7 @@ the `--help` command to `MkPasswd` to lists all its options then
 experiment with producing a few different types of password:
 
 ```
-MkPasswd$ cabal run mkPasswd -- --help
+$ cabal run mkpasswd -- --help
 ```
 
 This is how you would run the program during development. `cabal` can
@@ -289,10 +294,10 @@ also install your programs permanently into `~/.cabal/bin`. Install
 the program and run it:
 
 ```
-MkPasswd$ cabal install
-MkPasswd$ which mkPasswd
-/home/jb259/.cabal/bin/mkPasswd
-MkPasswd$ mkPasswd  -l 5 -e
+$ cabal install
+$ which mkpasswd
+/home/jb259/.cabal/bin/mkpasswd
+$ mkpasswd  -l 5 -e
 vIt@15 [vitals] 
 ```
 
@@ -301,7 +306,7 @@ loading all the modules and dependencies that it needs to run. This is done with
 command. Run the program in the REPL and call its `main` function:
 
 ```
-MkPasswd$ cabal repl
+$ cabal repl
 ...
 *Main> main
 K3MP'5
