@@ -103,11 +103,11 @@ will have the structure below.
     Note the *typeclass constraint* `Eq a` -- the type of the things in
 the list, `a`, must be a type that can be compared for equality:
 
-```haskell
-memb :: Eq a => [a] -> a -> Bool
-memb [] x     = ...
-memb (y:ys) x = ...
-```
+   ```haskell
+   memb :: Eq a => [a] -> a -> Bool
+   memb [] x     = ...
+   memb (y:ys) x = ...
+   ```
 
 4. Write a (recursive) function `length’ :: [a] -> Int` which
 calculates the length of a list. Think about the base case (what is
@@ -119,12 +119,12 @@ plus the length of the tail).
    returns `xs` with its first `n` elements removed. Make a function
    with three equations using pattern matching:
    
-```
-drop' :: Int -> [a] -> [a] -> [a]
-drop' 0 xs     = ...
-drop' n []     = ...
-drop' n (x:xs) = ...
-```
+   ```
+   drop' :: Int -> [a] -> [a] -> [a]
+   drop' 0 xs     = ...
+   drop' n []     = ...
+   drop' n (x:xs) = ...
+   ```
 
    So you need to think about how to drop zero elements from a list, how
 to drop `n` (any number) of elements from the empty list, and how to drop `n`
