@@ -80,7 +80,7 @@ quite a large file).
 The next step is figuring out how to parse an individual message. However, perhaps the file is
 even more corrupted than we thought: maybe individual lines are garbled. So, we can't be sure
 that a line from the input will be a valid `LogMessage`. Thus, we define a type (included
-in the provided \texttt{Log.hs}) to allow for the possibility of failure:
+in the provided `Log.hs`) to allow for the possibility of failure:
 
 ```Haskell
 type MaybeLogMessage = ValidLM LogMessage | InvalidLM String deriving (Show, Eq)
@@ -190,7 +190,8 @@ sortMessages :: [LogMessage] -> [LogMessage]
 ```
 
 that sorts the list of messages. Do not write out a full sorting algorithm! Instead, poke
-around in the \texttt{Data.List} module looking for a function that will help you.
+around in the [`Data.List`](https://hackage.haskell.org/package/base-4.14.1.0/docs/Data-List.html)
+module looking for a function that will help you.
 
 
 ## Logfile postmortem
