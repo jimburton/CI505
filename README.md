@@ -53,3 +53,7 @@ Read [these slides](labs/huffman-slides.pdf) on Huffman Trees, then [implement t
 [Webservices with Haskell](https://github.com/jimburton/haskell-webservice/blob/master/README.md). 
 Note that this time-consuming exercise lives in its own repository. Although you may not have
 time to complete it, you can always use it as a basic reference on the Happstack web framework.
+
+## Week 11
+
+Complete earlier exercises or get help with the assignment.
