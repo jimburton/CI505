@@ -4,7 +4,7 @@
 
 
 We're really not sure what happened, but we did manage to recover the
-log file [`error.log`]. It seems to consist of a different log
+log file [`error.log`](error.log). It seems to consist of a different log
 message on each line. Each line begins with a character indicating the
 type of log message it represents:
 
