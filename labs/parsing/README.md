@@ -263,5 +263,4 @@ which does the following:
 [3] Way too many pickles
 [8] Bad pickle-flange interaction detected
 [10] Flange failed!
-\end{lstlisting}
 ```
