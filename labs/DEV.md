@@ -1,5 +1,26 @@
 # Haskell development environment
 
+## Writing Haskell with style
+ The way that you format and organise your code is important. It has an enormous effect on 
+ the readability and ease of maintaining the code. If you get used to using standard conventions 
+ then others will find it much easier to understand what you wrote, and you'll find it easier to 
+ read code written by others too. I recommend that everyone read and follow 
+ [Johan Tibell's Haskell Style Guide](https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md). 
+
+You can also get suggestions on improving your code from the very useful `hlint` tool. You can 
+install it using `cabal`, read the hints then fix them: 
+```
+$ cabal install hlint
+$ hlint src/
+src/Main.hs:16:11-31: Warning: Use print
+Found:
+  putStrLn $ show coins
+Perhaps:
+  print coins
+
+1 hint
+```
+
 ## Editors for Haskell development
 
 There are quite a few editors that support Haskell development,
