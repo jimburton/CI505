@@ -118,12 +118,13 @@ repository (which is where haskell developers upload libraries and
 other software for distribution) and install the latest version of
 `cabal`. The default location for packages is
 `~/.cabal/bin`, where `~` is your home directory,
-e.g. `/home/ab123`. So to run programs installed by `cabal` (such as the
+e.g. on Linux it might be something like `/home/ab123`. So to run 
+programs installed by `cabal` (such as the
 new version of it you just installed), you need to
-add this location to your `PATH` variable. This is a Linux environment
+add this location to your `PATH` variable. This is an environment
 variable containing a list of locations in the file system that Bash
 will look in when you type a command in to a
-terminal. You can check the current state of `PATH` like this:
+terminal. On Linux you can check the current state of `PATH` like this:
 
 ```bash
 $ echo $PATH
@@ -155,7 +156,9 @@ $ which cabal
 /home/ab123/.cabal/bin/cabal
 ```
 
-Now you can start building haskell projects. The
+([The steps needed to add a location to the path on Windows](https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/) 
+are a little different but no more complicated.) Now you can start building 
+haskell projects. The
 basic idea is that each project lives in its own directory and if the
 project is called `myproject` there should be a config file called `myproject.cabal`
 at the top level. You can generate a new project like this:
@@ -295,14 +298,14 @@ to run. Now run the program, followed by its tests:
 ```
 $ cabal run mkpasswd
 ...
-$ cabal run test-mkpasswd
+$ cabal run test-hunit
 ```
 
 This program takes a variety of flags (or options) on the command line that govern
 the kind of passwords that are generated. If you want to pass flags to
 a program that is being run by `cabal` you have to do so after two
 dashes (`--`) so that `cabal` can distinguish between the arguments
-intended for *it* and those intended for *the program it is running*. Pass
+intended for itself and those intended for *the program it is running*. Pass
 the `--help` command to `MkPasswd` to lists all its options then
 experiment with producing a few different types of password:
 
