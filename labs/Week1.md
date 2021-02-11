@@ -42,7 +42,7 @@ Enter a list of the integers from 1 to 10 using the range syntax:
 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
 
-In the lectures we mentioned the standard function `map` and `filter`. There is also a standard
+In the lectures we mentioned the standard functions `map` and `filter`. There is also a standard
 function called `odd`, which takes an integer and returns `True` if that number is odd. Try using
 `map` and `filter` with the `odd` function and the list from the previous step:
 
@@ -58,6 +58,7 @@ same directory, with this content:
 
 ```haskell
 module Exercises where
+
 test :: String
 test = "Hello World!"
 ```
