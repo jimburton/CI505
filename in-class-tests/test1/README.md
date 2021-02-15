@@ -75,7 +75,7 @@ entering `main`.
    is a list with fewer than 2 elements (i.e. you don't have to worry about it!).
 
 3. Complete the `findK` function. Find the element at index `k` in list `l`. For example: `findK 2
-[0,0,1,0,0,0]` returns `1`.
+[0,0,1,0,0,0]` returns `1`. Behaviour is undefined if there is no `k`th element in the list.
 
 14. Complete the `palindrome` function. It should determine if a list, `l`, is a palindrome.
 
@@ -87,17 +87,20 @@ function flattens a list of lists into a single list. For example:
 6. Complete the `splitAtIndex` function. Split a list, `l`, at element `k` into a tuple containing the first
 part of `l` up to and including `k`, followed by the second part of
 `l` after `k`. For example `splitAtIndex 3 [1,1,1,2,2,2]` returns
-`([1,1,1],[2,2,2])`.
+`([1,1,1],[2,2,2])`. Behaviour is undefined if there is no `k`th element in the list.
 
-7. Complete the `dropK` function. Drop the element at index `k` in list `l`. For example `dropK 3
-[0,0,0,1,0,0,0]` returns `[0,0,0,0,0,0]`.
+7. Complete the `dropK` function. Drop the element at index `k` in
+list `l`. For example `dropK 3 [0,0,0,1,0,0,0]` returns
+`[0,0,0,0,0,0]`. If there is no `k`th element in the list `dropK`
+returns its input unchanged.
 
 8. Complete the `slice` function. Extract elements between `i`th and `k`th element in list `l`,
 including `i`, but not `k`. For example, `slice 3 6
 [0,0,0,1,2,3,0,0,0]` returns `[1,2,3]`.
 
 9. Complete the `insertElem` function. Insert element `x` in list `l` at index `k`. For example,
-`insertElem 2 5 [0,0,0,0,0,0]` returns `[0,0,0,0,0,2,0]`.
+`insertElem 2 5 [0,0,0,0,0,0]` returns `[0,0,0,0,0,2,0]`. If `k` is greater than or equal to the length 
+of the list `insertElem` adds `x` as the last element in the list.
 
 10. Complete the `rotate` function. Rotate list `l` `n` places left. For example, `rotate 2
 [1,2,3,4,5]` gives `[3,4,5,1,2]`.
