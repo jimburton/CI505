@@ -58,6 +58,10 @@ entering `main`.
 
 ```
 
+When you have completed the test, submit the file `Main.hs` on My
+Studies to get feedback. You can also take a look at the answers in
+the version of `Main.hs` in the `solutions` branch, but make sure to
+discuss your work with your tutor.
 
 1. Complete the function
    ```haskell
@@ -96,7 +100,9 @@ returns its input unchanged.
 
 8. Complete the `slice` function. Extract elements between `i`th and `k`th element in list `l`,
 including `i`, but not `k`. For example, `slice 3 6
-[0,0,0,1,2,3,0,0,0]` returns `[1,2,3]`.
+[0,0,0,1,2,3,0,0,0]` returns `[1,2,3]`. If `k` is greater than the length of the list `slice` should
+return all elements from `i` to the end of the list. If `i` is greater than the length of the list `slice`
+should return the empty list. Behaviour is undefined if `i` is not less than `k`.
 
 9. Complete the `insertElem` function. Insert element `x` in list `l` at index `k`. For example,
 `insertElem 2 5 [0,0,0,0,0,0]` returns `[0,0,0,0,0,2,0]`. If `k` is greater than or equal to the length 
