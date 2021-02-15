@@ -60,15 +60,15 @@ entering `main`.
 
 
 1. Complete the function
-```haskell
-myTakeWhile :: (a -> Bool) -> [a] -> [a]
-myTakeWhile p [] = undefined
-myTakeWhile p (x:xs) = undefined
-```
+   ```haskell
+   myTakeWhile :: (a -> Bool) -> [a] -> [a]
+   myTakeWhile p [] = undefined
+   myTakeWhile p (x:xs) = undefined
+   ```
 
-where `myTakeWhile p xs` returns elements of `xs` as a list until it
-reaches an element of `xs` for which `p` is false. For example,
-`myTakeWhile (\x -> x < 3) [1, 2, 3, 4]` returns `[1, 2]`.
+   where `myTakeWhile p xs` returns elements of `xs` as a list until it
+   reaches an element of `xs` for which `p` is false. For example,
+   `myTakeWhile (\x -> x < 3) [1, 2, 3, 4]` returns `[1, 2]`.
 
 2. Complete the `penultimate` function. It should find the penultimate
    (second to last) element in a list.
