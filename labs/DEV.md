@@ -15,7 +15,7 @@ Haskell projects --
 [`stack`](https://docs.haskellstack.org/en/stable/README/) and
 [`cabal`](https://www.haskell.org/cabal/). We will be using `cabal`.
 
-`cabal` is installed on Linux in the labs but it will be an older
+`cabal` is installed as part of the Haskell platform but it may be an older
 version that needs to be upgraded. Start by entering these commands
 into a terminal:
 
