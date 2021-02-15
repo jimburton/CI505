@@ -1,9 +1,29 @@
 # In-Class Test 1 -- List functions
 
-Make your changes to the module [`Main.hs`](Main.hs) in the same
-directory as this file. As the same time as having your editor open,
+This test should be completed as a `cabal` project. You will make
+your changes to the module [`Main.hs`](Main.hs) in the same
+directory as this file but rather than downloading just that file you
+need a copy of the entire directory (as it has the cabal configuration file 
+and other necessary items). The easiest way to do that is by using `git`:
+
+```
+$ git clone https://github.com/jimburton/CI505
+cloning into CI505 ...
+$ cd CI505/in-class-tests/test1/
+```
+
+As the same time as having your editor open,
 you will want to run the code in a terminal to test your changes.  Use
-the `cabal repl` command to do this.
+the `cabal repl` command to do this:
+
+```
+$ cabal repl
+Build profile: -w ghc-8.6.5 -O1
+...
+[1 of 1] Compiling Main             ( Main.hs, interpreted )
+Ok, one module loaded.
+
+```
 
 The REPL does tab completion so you can type the beginning of a
 function name and press tab to complete it. Try entering `my` and
@@ -13,9 +33,30 @@ In addition to playing with the functions yourself, each of them has
 at least one automated test. These are collected at the end of
 `Main.hs` -- have a look at what's there. Run tests in the REPL by
 entering `quickCheck <name-of-test.>` or run all of them at once by
-entering `:main`.  (This runs the function called `main` function --
-it only needs a colon before it because `main` is a special function
-in that GHC supplies it with arguments from the command line.)
+entering `main`. 
+
+```
+λ> quickCheck prop_dropK
++++ OK, passed 100 tests.
+λ> main
++++ OK, passed 100 tests; 110 discarded.
++++ OK, passed 100 tests; 218 discarded.
++++ OK, passed 100 tests; 46 discarded.
++++ OK, passed 100 tests; 50 discarded.
++++ OK, passed 100 tests; 244 discarded.
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
++++ OK, passed 100 tests; 102 discarded.
++++ OK, passed 100 tests; 323 discarded.
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
++++ OK, passed 100 tests; 11 discarded.
++++ OK, passed 100 tests; 826 discarded.
++++ OK, passed 100 tests.
++++ OK, passed 100 tests.
+
+```
 
 
 1. Complete the function
