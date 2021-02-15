@@ -71,8 +71,8 @@ entering `main`.
    `myTakeWhile (\x -> x < 3) [1, 2, 3, 4]` returns `[1, 2]`.
 
 2. Complete the `penultimate` function. It should find the penultimate
-   (second to last) element in a list. If the input is a list with fewer than two elements
-   the function should return an `error` with a suitable message.
+   (second to last) element in a list. Behaviour is undefined if the input
+   is a list with fewer than 2 elements (i.e. you don't have to worry about it!).
 
 3. Complete the `findK` function. Find the element at index `k` in list `l`. For example: `findK 2
 [0,0,1,0,0,0]` returns `1`.
