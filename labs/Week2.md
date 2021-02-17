@@ -76,8 +76,9 @@ pair of its length and its first element.
    ```
 
    **Hint:** Again, a good way to start is to `map` a lambda expression over the
-input. This function will take a pair, `(i,c)`. Use the functions
-`repeat` and `take` to create a list of `c` values with length
+input. This function will take a pair, `(i,c)`. Use the 
+[`replicate`](https://hackage.haskell.org/package/base-4.14.1.0/docs/Prelude.html#v:replicate)
+function to create a list of `c` values with length
 `i`. This will result in a list of lists which you can flatten with
 the `concat` function. 
 
