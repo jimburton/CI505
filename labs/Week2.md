@@ -39,11 +39,11 @@ Try experimenting with `dropWhile` and `takeWhile` in the REPL:
    ```
    λ> :t takeWhile
    takeWhile :: (a -> Bool) -> [a] -> [a]
-   λ> takeWhile (\x -> x=='a') "aaabcd"
+   λ> takeWhile (=='a') "aaabcd"
    "aaa"
    λ> :t dropWhile
    dropWhile :: (a -> Bool) -> [a] -> [a]
-   λ> dropWhile (\x -> x=='a') "aaabcd"
+   λ> dropWhile (=='a') "aaabcd"
    "bcd"
    ```
 	
