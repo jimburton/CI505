@@ -46,25 +46,24 @@ duplicate l = concatMap (\x -> x:x:[]) l
   ([1,1,1,2],[2,2]). -}
 
 splitAtIndex :: Int -> [a] -> ([a], [a])
-splitAtIndex k l = saiInner k [] l
-    where saiInner n xs [] = (reverse xs, [])
-          saiInner n xs ys = if n == 0 then (reverse $ (head ys):xs, tail ys) 
-                             else saiInner (n-1) ((head ys):xs) (tail ys)
+splitAtIndex k l = (take (k+1) l, drop (k+1) l)
 
-{- 7. Drop the element at index k in list l. For example dropK 3
-    [0,0,0,1,0,0,0] returns [0,0,0,0,0,0]. -}
+{- 7. Drop the element at index k in list l. For example dropK 3 [1, 2, 3, 4, 5]
+    returns [1, 2, 3, 5]. -}
 
 dropK :: Int -> [a] -> [a]
-dropK k l = if k == 0 then l else dropK (k-1) (tail l)
+dropK _ []     = []
+dropK 0 (x:xs) = xs
+dropK k (x:xs) = x : dropK (k-1) xs
 
 {- 8. Extract elements between ith and kth element in list l,  including i but not k. 
    For example, slice 3 6 [0,0,0,1,2,3,0,0,0]  returns [1,2,3]. -}
 
 slice :: Int -> Int -> [a] -> [a]
-slice i k l | null l = []
-            | i > 0 = slice (i-1) (k-1) (tail l)
-            | k < 1 = []
-            | otherwise = (head l) : slice i (k-1) (tail l)
+slice i k []     = []
+slice i k (x:xs) = if i > 0 then slice (i-1) (k-1) xs
+                   else if k < 1 then []
+                        else x : slice i (k-1) xs
 
 {- 9. Insert element x in list l at index k. For example,
 insertElem 2 5 [0,0,0,0,0,0] returns [0,0,0,0,0,2,0]. If index k
@@ -72,8 +71,8 @@ insertElem 2 5 [0,0,0,0,0,0] returns [0,0,0,0,0,2,0]. If index k
 
 insertElem :: a -> Int -> [a] -> [a]
 insertElem x k [] = [x]
-insertElem x k l = if k == 0 then x:l 
-                   else (head l) : (insertElem x (k-1) (tail l))
+insertElem x k l  = if k == 0 then x:l 
+                    else (head l) : (insertElem x (k-1) (tail l))
 
 {- 10. Rotate list l n places left, where n is less than the length of the list. 
    For example, rotate 2 [1,2,3,4,5] gives [3,4,5,1,2]. -}
@@ -127,14 +126,12 @@ prop_splitAtIndex3 :: Int -> [Int] -> Bool
 prop_splitAtIndex3 k xs = length ys + length zs == length xs
     where (ys, zs) = splitAtIndex k xs
 
-prop_dropK :: [Int] -> Bool
-prop_dropK xs = dropK 0 xs == xs
+prop_dropK :: [Int] -> Property
+prop_dropK xs = not (null xs) ==> dropK 0 xs == tail xs
 
-prop_dropK2 :: [Int] -> Bool
-prop_dropK2 xs = dropK (length xs) xs == []
-
-prop_dropK3 :: [Int] -> Property
-prop_dropK3 xs = not (null xs) ==> dropK 1 xs == tail xs
+prop_dropK2 :: Int -> [Int] -> Property
+prop_dropK2 k xs = not (null xs) && k > 0 && k < length xs ==>
+  length (dropK k xs) == (length xs) -1
 
 prop_slice :: Int -> Int -> [Int] -> Property
 prop_slice i k l = i >= 0 && k >= 0 && i < k ==>
@@ -150,6 +147,7 @@ prop_insertElem3 x i xs = i >= 0 && i < length xs ==> (insertElem x i xs)!!i' ==
 prop_rotate :: Int -> [Int] -> Bool
 prop_rotate i xs = (rotate 0 xs) == xs
 
+prop_rotate2 :: Int -> [Int] -> Bool
 prop_rotate2 i xs = rotate (length xs) xs == xs
 
 main = do quickCheck prop_myTakeWhile
@@ -164,7 +162,7 @@ main = do quickCheck prop_myTakeWhile
           quickCheck prop_splitAtIndex3
           quickCheck prop_dropK
           quickCheck prop_dropK2
-          quickCheck prop_dropK3
           quickCheck prop_slice
           quickCheck prop_insertElem
           quickCheck prop_rotate
+          quickCheck prop_rotate2

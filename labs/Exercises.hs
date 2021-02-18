@@ -50,5 +50,5 @@ encodeRLE xs = map (\(i, c) -> if i == 1 then Single c
 
 decodeRLE :: Eq a => [RLE a] -> [a]
 decodeRLE xs = concatMap (\r -> case r of
-                             (Single c)     -> [c]
-                             (Multiple i c) -> replicate i c) xs
+                             Single c     -> [c]
+                             Multiple i c -> replicate i c) xs
