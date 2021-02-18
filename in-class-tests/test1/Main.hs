@@ -139,6 +139,7 @@ prop_insertElem3 x i xs = i >= 0 && i < length xs ==> (insertElem x i xs)!!i' ==
 prop_rotate :: Int -> [Int] -> Bool
 prop_rotate i xs = (rotate 0 xs) == xs
 
+prop_rotate2 :: Int -> [Int] -> Bool
 prop_rotate2 i xs = rotate (length xs) xs == xs
 
 main = do quickCheck prop_myTakeWhile
@@ -157,3 +158,4 @@ main = do quickCheck prop_myTakeWhile
           quickCheck prop_slice
           quickCheck prop_insertElem
           quickCheck prop_rotate
+          quickCheck prop_rotate2
