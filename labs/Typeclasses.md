@@ -22,6 +22,8 @@ data Nat = Z | S Nat deriving (Show, Eq)
 
 Definitions for adding and subtracting `Nat`s were given in the lecture notes. 
 
+# Make a `Nat` instance of `Num`
+
 We also discussed *typeclasses* such as `Show` (the class of all ADTs
 that can be converted to strings), `Eq` (those ADTs that can be
 comparted for equality) and `Num` (the numeric types). If we make
@@ -79,46 +81,97 @@ numeric operations on its values in `ghci`:
 -- and so on...
 ```
 
-As an extension, add the `Nat` datatype to the `Integral` typeclass. These are the types for which
-the following functions are defined:
+# Make a `Nat` instance of `Integral`
+
+As an extension, add the `Nat` datatype to the `Integral` typeclass,
+which provides whole-number division and remainder operations. 
+
+There is a hierarchy of typeclasses at work here -- to make a type
+into an instance of `Integral`, it must already be an instance of
+`Enum`, `Ord` and `Real`.
+
+## Make a `Nat` instance of `Ord`
+
+The `Ord` typeclass is for those types that can be ordered
+(i.e. values can be less than or greater than each other). The
+typeclass includes the `(<)`, `(>)`, `(<=)` and `compare`
+functions. Actually, all you need to do is define `compare`, then the
+compiler can infer the others for you. A definition of `compare` is
+the "minimal definition" for this typeclass.  The `compare` function
+should take two `Nat`s, say `n` and `m`, and return an `Ordering`,
+which is the value `LT` if `n` is less than `m`, `EQ` if they are equal, or `GT`
+if `n` is greater than `m`. Your code will look like something this:
 
 ```
-toInteger :: a -> Integer
-quotRem   :: a -> (a,a) 
+instance Ord Nat where 
+  compare n m = ...
+
 ```
 
-The `toInteger` function should be obvious...`quotRem` needs to take two `Nat`s, say `n` and `m`, and
-return a pair containing the `Nat`s which are the number of times `m` goes into `n` and the remainder 
-after that division.
+but using pattern matching on `n` and `m` may be the neatest way to write it.
 
-Before you can declare the `Integral` instance of `Nat`, you need to declare it as an `Ord`, `Enum`
-and `Real`. The `Ord` typeclass is for those types that can be ordered (i.e. values can be less than 
-or greater than each other). The typeclass instance needs to define the `compare` method which should
-take two `Nat`s, say `n` and `m`, and return an `Ordering`, which is `LT` if `n` is less than `m`, `EQ`
-if they are equal, or `GT` if `n` is greater than `m`.
+## Make a `Nat` instance of `Enum`
 
-To declare `Nat` as an `Enum` you need to define the functions `toEnum` and `fromEnum`. The `toEnum`
+To declare `Nat` as an `Enum` you need to define the functions `toEnum` and `fromEnum` (there
+are other functions in the typeclass, but this is the minimal definition). The `toEnum`
 function takes an `Integer`, `n`, and returns a `Nat`. If `n` is less than zero throw an `error`, 
 if it is zero return `Z`, and so on. The `fromEnum` function takes a `Nat` and returns an `Integer`.
 
-The `Real` typeclass requires a single function, `toRational`, which
+```
+instance Enum Nat where
+  toEnum n = ...
+  fromEnum n = 0
+
+```
+## Make a `Nat` instance of `Real`
+
+`Real` is rather confusingly named -- rather than being the 
+typeclass of real numbers (those with a decimal fraction) it is the type class of numbers
+that aren't irrational (like `e` or `pi`).
+
+The typeclass requires a single function, `toRational`, which
 takes a `Nat` and returns a `Rational`. You can use the `fromEnum`
 function to get an `Integer` based on your `Nat`, then use the built-in function `fromIntegral` to
 convert this to a `Rational`.
 
-Finally, you can create the `Integral` instance for `Nat`. The
-`toInteger` function is easy, and will be identical to
+```
+instance Real Nat where
+  toRational n = ...
+```
+## The `Nat instance of `Integral`
+
+Finally, you can create the `Integral` instance for `Nat`. This
+requires you to define the following functions:
+
+```
+instance Integral Nat where
+  toInteger n = ...
+  quotRem n d = ...
+
+```
+
+The `toInteger` function is easy, and will be identical to
 `toRational`. 
 
-The `quotRem` function is a bit trickier. If we call `quotRem n m` we
-need to know how many times `m` goes into `n`, and what the remainder
-is after the division. If `m` is bigger than `n` it goes into it zero
-times with `n` left over so the answer is `(Z, n)`. Otherwise, we can
-count the number of times `m` goes into `n` by recursively subtracting
-`m` from `n` and adding one to the first element of the pair that
-forms the result each time. So in this case you will make a recursive call to `quotRem`
-passing in `(n-m)` as the first argument and `m` (unchanged) as the second. If the
-result of this recursive call is the pair `(n', m')` then the result of the whole
-function is the pair of the *successor* of `n'` (`S n'`, this is the bit that is "counting" how
-many time the function has been called, i.e. how many times `m` goes into `n`)
-and the remainder `m'`.
+The `quotRem` function is a bit trickier. The type of `quotRem` is
+
+```
+quotRem :: Integral a => a -> a -> (a, a)
+```
+Calling `quotRem n m` divides `n` by `m` then returns the pair of the result
+of the division and the remainder. There are two cases:
+
+1. If `m` is bigger than `n` it goes into it zero
+times with `n` left over so the answer is `(Z, n)`. 
+2. Otherwise, we can count the number of times `m` goes into `n` by
+recursively subtracting `m` from `n` and adding one to the first
+element of the pair that forms the result each time. So in this case
+you will make a recursive call to `quotRem` passing in `(n-m)` as the
+first argument and `m` (unchanged) as the second. If the result of
+this recursive call is the pair `(n', m')` then the result of the
+whole function is the pair of the *successor* of `n'` (`S n'` -- this is
+the way we are "counting" how many time the function has been called,
+i.e. how many times `m` goes into `n`) and the remainder `m'`. Eventually, `n`
+will be less than `m` and the recursion will end.
+
+
