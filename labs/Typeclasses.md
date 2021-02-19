@@ -78,3 +78,47 @@ numeric operations on its values in `ghci`:
 (S (S Z))
 -- and so on...
 ```
+
+As an extension, add the `Nat` datatype to the `Integral` typeclass. These are the types for which
+the following functions are defined:
+
+```
+toInteger :: a -> Integer
+quotRem   :: a -> (a,a) 
+```
+
+The `toInteger` function should be obvious...`quotRem` needs to take two `Nat`s, say `n` and `m`, and
+return a pair containing the `Nat`s which are the number of times `m` goes into `n` and the remainder 
+after that division.
+
+Before you can declare the `Integral` instance of `Nat`, you need to declare it as an `Ord`, `Enum`
+and `Real`. The `Ord` typeclass is for those types that can be ordered (i.e. values can be less than 
+or greater than each other). The typeclass instance needs to define the `compare` method which should
+take two `Nat`s, say `n` and `m`, and return an `Ordering`, which is `LT` if `n` is less than `m`, `EQ`
+if they are equal, or `GT` if `n` is greater than `m`.
+
+To declare `Nat` as an `Enum` you need to define the functions `toEnum` and `fromEnum`. The `toEnum`
+function takes an `Integer`, `n`, and returns a `Nat`. If `n` is less than zero throw an `error`, 
+if it is zero return `Z`, and so on. The `fromEnum` function takes a `Nat` and returns an `Integer`.
+
+The `Real` typeclass requires a single function, `toRational`, which
+takes a `Nat` and returns a `Rational`. You can use the `fromEnum`
+function to get an `Integer` based on your `Nat`, then use the built-in function `fromIntegral` to
+convert this to a `Rational`.
+
+Finally, you can create the `Integral` instance for `Nat`. The
+`toInteger` function is easy, and will be identical to
+`toRational`. 
+
+The `quotRem` function is a bit trickier. If we call `quotRem n m` we
+need to know how many times `m` goes into `n`, and what the remainder
+is after the division. If `m` is bigger than `n` it goes into it zero
+times with `n` left over so the answer is `(Z, n)`. Otherwise, we can
+count the number of times `m` goes into `n` by recursively subtracting
+`m` from `n` and adding one to the first element of the pair that
+forms the result each time. So in this case you will make a recursive call to `quotRem`
+passing in `(n-m)` as the first argument and `m` (unchanged) as the second. If the
+result of this recursive call is the pair `(n', m')` then the result of the whole
+function is the pair of the *successor* of `n'` (`S n'`, this is the bit that is "counting" how
+many time the function has been called, i.e. how many times `m` goes into `n`)
+and the remainder `m'`.
