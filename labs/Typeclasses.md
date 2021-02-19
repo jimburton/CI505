@@ -87,8 +87,8 @@ As an extension, add the `Nat` datatype to the `Integral` typeclass,
 which provides whole-number division and remainder operations. 
 
 There is a hierarchy of typeclasses at work here -- to make a type
-into an instance of `Integral`, it must already be an instance of two
-other classes, `Enum`, `Ord` and `Real`.
+into an instance of `Integral`, it must already be an instance of
+`Enum`, `Ord` and `Real`.
 
 ## Make a `Nat` instance of `Ord`
 
