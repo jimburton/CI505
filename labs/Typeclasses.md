@@ -112,13 +112,17 @@ Finally, you can create the `Integral` instance for `Nat`. The
 
 The `quotRem` function is a bit trickier. If we call `quotRem n m` we
 need to know how many times `m` goes into `n`, and what the remainder
-is after the division. If `m` is bigger than `n` it goes into it zero
-times with `n` left over so the answer is `(Z, n)`. Otherwise, we can
-count the number of times `m` goes into `n` by recursively subtracting
-`m` from `n` and adding one to the first element of the pair that
-forms the result each time. So in this case you will make a recursive call to `quotRem`
-passing in `(n-m)` as the first argument and `m` (unchanged) as the second. If the
-result of this recursive call is the pair `(n', m')` then the result of the whole
-function is the pair of the *successor* of `n'` (`S n'`, this is the bit that is "counting" how
-many time the function has been called, i.e. how many times `m` goes into `n`)
-and the remainder `m'`.
+is after the division. There are two cases:
+
+1. If `m` is bigger than `n` it goes into it zero
+times with `n` left over so the answer is `(Z, n)`. 
+2. Otherwise, we can count the number of times `m` goes into `n` by
+recursively subtracting `m` from `n` and adding one to the first
+element of the pair that forms the result each time. So in this case
+you will make a recursive call to `quotRem` passing in `(n-m)` as the
+first argument and `m` (unchanged) as the second. If the result of
+this recursive call is the pair `(n', m')` then the result of the
+whole function is the pair of the *successor* of `n'` (`S n'` -- this is
+the way we are "counting" how many time the function has been called,
+i.e. how many times `m` goes into `n`) and the remainder `m'`. Eventually, `n`
+will be less than `m` and the recursion will end.
