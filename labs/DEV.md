@@ -210,7 +210,7 @@ to run. Now run the program, followed by its tests:
 ```
 $ cabal run mkpasswd
 ...
-$ cabal run test-hunit
+$ cabal run test-mkpasswd
 ```
 
 This program takes a variety of flags (or options) on the command line that govern
