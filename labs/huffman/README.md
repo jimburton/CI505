@@ -7,7 +7,7 @@ Enter your solutions into the file [Huffman.hs](Huffman.hs). Use
 
 After reading [the slides](../huffman-slides.pdf) about Huffman trees
 you should have an understanding of the data structures and algorithms
-involved. We will be modelling *frequence tables* as follows:
+involved. We will be modelling *frequency tables* as follows:
 
 ```haskell
 type FreqTable a = [(a, Int)]
