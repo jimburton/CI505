@@ -25,7 +25,7 @@ data HTree a = Leaf Int a | Branch Int (HTree a) (HTree a) deriving (Show, Eq)
 ```
 
 0. Make `HTree a` into an instance of the `Ord` typeclass. To do this
-you need to provide a definition of `(<=)` for `HTree`s. One `HTree`
+you need to provide a definition of `(<=)` for `HTree`. One `HTree`
 is less than another if and only if its frequency label is less. That
 is, leaves are not necessarily less than branches and vice versa.
 
