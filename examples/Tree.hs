@@ -1,15 +1,31 @@
 module Tree
   where
 
-import Data.Foldable
+data Tree a = Branch a (Tree a) (Tree a)
+            | Leaf a deriving (Show, Eq)
 
-data Tree a = Branch a (Tree a) (Tree a) | Leaf a deriving (Show, Eq)
+-- | Foldable instance for Tree. Now we can define functions like
+--   treeToList below.
+instance Foldable Tree where
+  foldr = foldTree
 
+-- | Functor instance for Tree. Now we can map over trees, like:
+-- > let t1 = Branch 1 (Leaf 2) (Leaf 3)
+-- > fmap (2^) t1
+-- Branch 2 (Leaf 4) (Leaf 8)
 instance Functor Tree where
   fmap = mapTree
 
-instance Foldable Tree where
-  foldr = foldTree
+-- | Applicative instance for Tree. Now we can do things like:
+-- > let t1 = Branch 1 (Leaf 2) (Leaf 3)
+-- > let t2 = Branch 10 (Leaf 20) (Leaf 30)
+-- > (*) < $ > t1 <*> t2
+-- Branch 10 (Leaf 40) (Leaf 90)
+instance Applicative Tree where
+  pure = Leaf
+  (Leaf f) <*> t                      = fmap f t
+  (Branch f _ _) <*> (Leaf x)         = Leaf (f x)
+  (Branch f l r) <*> (Branch x l' r') = Branch (f x) (l <*> l') (r <*> r')
 
 -- | Fold a binary function over a Tree.
 foldTree :: (a -> b -> b) -> b -> Tree a -> b
