@@ -68,6 +68,23 @@ whatWentWrong =
 -- | Exercise 8
 processLogFile :: String -> String -> IO ()
 processLogFile inPath outPath = do
+  lms <- parse inPath
+  let worst = whatWentWrong lms
+      formatted = map (\(ts,m) -> "["++show ts++"] "++m) worst
+  writeFile outPath (unlines formatted)
+
+{-
+There are various alternative ways of writing this.
+
+Using fmap for all the pure functions:
+
+processLogFile inPath outPath = do
   ms <- fmap (unlines . map (\(ts,m) -> "["++show ts++"] "++m) . whatWentWrong) (parse inPath)
   writeFile outPath ms
 
+Or without a do block at all and using (>>=) to pass the output from one IO action to another:
+processLogFile inPath outPath = 
+  fmap (unlines . map (\(ts,m) -> "["++show ts++"] "++m) . whatWentWrong) (parse inPath) >>= writeFile outPath 
+
+
+-}
