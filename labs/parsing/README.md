@@ -65,7 +65,7 @@ functional as possible. Functions which may (or may not) be useful to you includ
 The first thing we need to do is to read the log file. Define a function
 
 ```Haskell
-readLogFile :: String -> IO [String]
+readLogFile :: FilePath -> IO [String]
 ```
 
 that takes the path to a log file, reads its contents and returns a list of strings in which
@@ -81,7 +81,7 @@ quite a large file).
 The next step is figuring out how to parse an individual message. However, perhaps the file is
 even more corrupted than we thought: maybe individual lines are garbled. So, we can't be sure
 that a line from the input will be a valid `LogMessage`. Thus, we define a type (included
-in the provided \texttt{Log.hs}) to allow for the possibility of failure:
+in the provided `Log.hs`) to allow for the possibility of failure:
 
 ```Haskell
 type MaybeLogMessage = ValidLM LogMessage | InvalidLM String deriving (Show, Eq)
@@ -235,7 +235,7 @@ to be
 
 You can test your `whatWentWrong` function with `testWhatWentWrong`, which is
 also provided by the `Log` module. You should provide `testWhatWentWrong` with your parse
-function, your `whatWentWrong` function, and the name of the logfile to parse.
+function, the path to a log file and your `whatWentWrong` function.
 
 ## Exercise 8
 

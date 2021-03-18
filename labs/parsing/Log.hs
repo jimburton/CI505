@@ -44,7 +44,7 @@ testParse parseF i path = do ls <- parseF path
 
 testWhatWentWrong :: (String -> IO [LogMessage]) ->
                      String ->
-                    ([LogMessage] -> [String]) ->
+                    ([LogMessage] -> [(TimeStamp,String)]) ->
                      IO ()
 testWhatWentWrong parseF path wwwF = do ls <- parseF path
                                         let strs = wwwF ls 
