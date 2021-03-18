@@ -71,10 +71,3 @@ processLogFile inPath outPath = do
   ms <- fmap (unlines . map (\(ts,m) -> "["++show ts++"] "++m) . whatWentWrong) (parse inPath)
   writeFile outPath ms
 
-worst :: [LogMessage] -> [LogMessage]
-worst = foldl (\acc lm -> case lm of
-                            (LogMessage (Error sev) _ _) ->
-                              if sev >= 50
-                              then lm : acc
-                              else acc
-                            _  -> acc) []
