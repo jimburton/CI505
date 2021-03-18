@@ -41,7 +41,7 @@ If you want an additional exercise this week, have a go at
 
 ## Week 6
 
-[Spamfilter program](labs/Spam.md)
+[Parsing (by hand) and IO exercises](labs/parsing/README.md).
 
 ## Week 7
 
@@ -55,8 +55,6 @@ Complete the exercise on the
 use the `State` monad.
 
 ## Week 9
-
-[Parsing (by hand) and IO exercises](labs/parsing/README.md).
 
 [Parsing using AttoParsec](https://github.com/jimburton/simple-log-parser).
 
