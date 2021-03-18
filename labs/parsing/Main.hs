@@ -55,19 +55,20 @@ sortMessages = sortBy compareMsgs
 
 -- | Exercise 7
 whatWentWrong :: [LogMessage] -> [(TimeStamp, String)]
-whatWentWrong = map (\(LogMessage _ ts m) -> (ts,m))
-                . sortMessages . foldl (\acc lm -> case lm of
-                                                     (LogMessage (Error sev) _ _) ->
-                                                       if sev >= 50
-                                                       then lm : acc
-                                                       else acc
-                                                     _  -> acc) []
+whatWentWrong =
+  map (\(LogMessage _ ts m) -> (ts,m))
+  . sortMessages . foldl (\acc lm ->
+                             case lm of
+                               (LogMessage (Error sev) _ _) ->
+                                 if sev >= 50
+                                 then lm : acc
+                                 else acc
+                               _  -> acc) []
 
 -- | Exercise 8
 processLogFile :: String -> String -> IO ()
 processLogFile inPath outPath = do
-  ms <- fmap (unlines . map (\(LogMessage _ ts m) -> "["++show ts++"] "++m) . worst . sortMessages)
-    (parse inPath)
+  ms <- fmap (unlines . map (\(ts,m) -> "["++show ts++"] "++m) . whatWentWrong) (parse inPath)
   writeFile outPath ms
 
 worst :: [LogMessage] -> [LogMessage]
