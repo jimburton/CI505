@@ -17,6 +17,11 @@ main = putStrLn ""
 
      do str <- readFile path
         return (lines str)
+
+     We could have made the existing version "uncurried" by leaving out
+     the argument:
+
+     readLogFile = fmap lines . readFile 
 -}
 readLogFile :: FilePath -> IO [String]
 readLogFile path = fmap lines (readFile path)
@@ -39,6 +44,10 @@ parseMessage str = let wds = words str in
 
 {- | Exercise 3
 
+     Note that the definition is uncurried, as are several of the
+     others below. There is no need to name the list of log messages,
+     as it will just be supplied as the rightmost argument to the call to foldl.
+
      We could have done this without a fold:
 
      validMessagesOnly [] = []
@@ -52,13 +61,13 @@ validMessagesOnly = foldl (\acc mlm -> case mlm of
 
 -- | Exercise 4
 parse :: String -> IO [LogMessage]
-parse str = fmap (validMessagesOnly . map parseMessage) (readLogFile str)
+parse = fmap (validMessagesOnly . map parseMessage) . readLogFile 
 
 {- | Exercise 5
 
-     We could have done this with nested if statement that compare ts1 and ts2 and
-     return LT, EQ or GT as appropriate, but ints are in the Ord typeclass so we
-     can just call compare on the timestamps.
+     We could have done this with nested if statements that compare ts1 and ts2 and
+     return LT, EQ or GT as appropriate, but the timestamps are ints, which are in
+     the Ord typeclass so we can just call compare on them.
 -}
 compareMsgs :: LogMessage -> LogMessage -> Ordering
 compareMsgs (LogMessage _ ts1 _) (LogMessage _ ts2 _) = ts1 `compare` ts2
@@ -90,13 +99,13 @@ whatWentWrong =
       ms <- fmap (unlines . map (\(ts,m) -> "["++show ts++"] "++m) . whatWentWrong) (parse inPath)
       writeFile outPath ms
 
-   Or without a do block at all and using (>>=) to pass the output from
-   one IO action to another. Note that this function is a single expression
-   and could be on one line but I broke it over two lines to make it easier to read:
+    Or without a do block at all and using (>>=) to pass the output from
+    one IO action to another. Note that this function is a single expression
+    and could be on one line but I broke it over two lines to make it easier to re:
 
-   processLogFile inPath outPath = 
-     fmap (unlines . map (\(ts,m) -> "["++show ts++"] "++m) . whatWentWrong) (parse inPath)
-     >>= writeFile outPath 
+    processLogFile inPath outPath = 
+      fmap (unlines . map (\(ts,m) -> "["++show ts++"] "++m) . whatWentWrong) (parse inPath)
+      >>= writeFile outPath 
 
 -}
 processLogFile :: String -> String -> IO ()
