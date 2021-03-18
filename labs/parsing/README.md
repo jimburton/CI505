@@ -4,7 +4,7 @@
 
 
 We're really not sure what happened, but we did manage to recover the
-log file [`error.log`](error.log). It seems to consist of a different log
+log file `error.log`. It seems to consist of a different log
 message on each line. Each line begins with a character indicating the
 type of log message it represents:
 
@@ -40,16 +40,17 @@ data LogMessage  = LogMessage MessageType TimeStamp String deriving (Show, Eq)
 ```
 
 We've provided you with a module `Log.hs` containing these datatype declarations, along
-with some other useful functions. Enter your solutions in the `Main.hs` file, the first few lines of which looks like this:
+with some other useful functions. Enter your solutions in a new file called
+`LogAnalysis.hs`, the first few lines of which should look like this:
 
 ```Haskell
-module Main where
+module LogAnalysis where
 
 import System.IO
 import Log
 ```
 
-which sets up your file as a module named `Main`, and imports the
+which sets up your file as a module named `LogAnalysis`, and imports the
 `System.IO` and `Log` modules so you can use the types and functions they
 provides. 
 
@@ -64,7 +65,7 @@ functional as possible. Functions which may (or may not) be useful to you includ
 The first thing we need to do is to read the log file. Define a function
 
 ```Haskell
-readLogFile :: String -> IO [String]
+readLogFile :: FilePath -> IO [String]
 ```
 
 that takes the path to a log file, reads its contents and returns a list of strings in which
@@ -190,8 +191,7 @@ sortMessages :: [LogMessage] -> [LogMessage]
 ```
 
 that sorts the list of messages. Do not write out a full sorting algorithm! Instead, poke
-around in the [`Data.List`](https://hackage.haskell.org/package/base-4.14.1.0/docs/Data-List.html)
-module looking for a function that will help you.
+around in the \texttt{Data.List} module looking for a function that will help you.
 
 
 ## Logfile postmortem
@@ -235,7 +235,7 @@ to be
 
 You can test your `whatWentWrong` function with `testWhatWentWrong`, which is
 also provided by the `Log` module. You should provide `testWhatWentWrong` with your parse
-function, your `whatWentWrong` function, and the name of the logfile to parse.
+function, the path to a log file and your `whatWentWrong` function.
 
 ## Exercise 8
 
@@ -263,4 +263,5 @@ which does the following:
 [3] Way too many pickles
 [8] Bad pickle-flange interaction detected
 [10] Flange failed!
+\end{lstlisting}
 ```
