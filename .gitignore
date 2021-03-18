@@ -19,4 +19,4 @@ cabal.project.local
 *.hp
 TAGS/
 TAGS
-
+**/#*
