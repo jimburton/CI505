@@ -53,7 +53,7 @@ which sets up your file as a module named `Main`, and imports the
 `System.IO` and `Log` modules so you can use the types and functions they
 provides. 
 
-Use the [Prelude](https://www.haskell.org/ghc/docs/latest/html/libraries/haskell2010-1.0.0.0/Prelude.html)
+Use the [Prelude](https://hackage.haskell.org/package/base-4.14.1.0/docs/Prelude.html)
 functions to make your solution as concise, high-level, and
 functional as possible. Functions which may (or may not) be useful to you include
 `lines`, `words`, `unwords`, `take`, `drop`, `(.)`,
