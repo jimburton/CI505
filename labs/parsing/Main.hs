@@ -11,7 +11,13 @@ import Log
 main :: IO ()
 main = putStrLn ""
 
--- | Exercise 1
+{- | Exercise 1
+
+     We could have done this in a do block without using fmap:
+
+     do str <- readFile path
+        return (lines str)
+-}
 readLogFile :: FilePath -> IO [String]
 readLogFile path = fmap lines (readFile path)
           
@@ -31,21 +37,29 @@ parseMessage str = let wds = words str in
       ValidLM (LogMessage (Error sev) ts msg)
     _ -> InvalidLM str
 
--- | Exercise 3
+{- | Exercise 3
+
+     We could have done this without a fold:
+
+     validMessagesOnly [] = []
+     validMessagesOnly ((InvalidLM _):xs) = validMessagesOnly xs
+     validMessagesOnly ((ValidLM lm):xs) = lm : validMessagesOnly xs
+-}
 validMessagesOnly :: [MaybeLogMessage] -> [LogMessage]
 validMessagesOnly = foldl (\acc mlm -> case mlm of
                               InvalidLM _ -> acc
                               ValidLM lm  -> lm : acc) []
--- or
---validMessagesOnly [] = []
---validMessagesOnly ((InvalidLM _):xs) = validMessagesOnly xs
---validMessagesOnly ((ValidLM lm):xs) = lm : validMessagesOnly xs
 
 -- | Exercise 4
 parse :: String -> IO [LogMessage]
 parse str = fmap (validMessagesOnly . map parseMessage) (readLogFile str)
 
--- | Exercise 5
+{- | Exercise 5
+
+     We could have done this with nested if statement that compare ts1 and ts2 and
+     return LT, EQ or GT as appropriate, but ints are in the Ord typeclass so we
+     can just call compare on the timestamps.
+-}
 compareMsgs :: LogMessage -> LogMessage -> Ordering
 compareMsgs (LogMessage _ ts1 _) (LogMessage _ ts2 _) = ts1 `compare` ts2
 
@@ -65,26 +79,29 @@ whatWentWrong =
                                  else acc
                                _  -> acc) []
 
--- | Exercise 8
+{- | Exercise 8
+
+     There are various alternative ways of writing this, and the
+     best one for you is the one you find most clear.
+
+    E.g., using fmap for all the pure functions:
+
+    processLogFile inPath outPath = do
+      ms <- fmap (unlines . map (\(ts,m) -> "["++show ts++"] "++m) . whatWentWrong) (parse inPath)
+      writeFile outPath ms
+
+   Or without a do block at all and using (>>=) to pass the output from
+   one IO action to another. Note that this function is a single expression
+   and could be on one line but I broke it over two lines to make it easier to read:
+
+   processLogFile inPath outPath = 
+     fmap (unlines . map (\(ts,m) -> "["++show ts++"] "++m) . whatWentWrong) (parse inPath)
+     >>= writeFile outPath 
+
+-}
 processLogFile :: String -> String -> IO ()
 processLogFile inPath outPath = do
   lms <- parse inPath
   let worst = whatWentWrong lms
       formatted = map (\(ts,m) -> "["++show ts++"] "++m) worst
   writeFile outPath (unlines formatted)
-
-{-
-There are various alternative ways of writing this.
-
-Using fmap for all the pure functions:
-
-processLogFile inPath outPath = do
-  ms <- fmap (unlines . map (\(ts,m) -> "["++show ts++"] "++m) . whatWentWrong) (parse inPath)
-  writeFile outPath ms
-
-Or without a do block at all and using (>>=) to pass the output from one IO action to another:
-processLogFile inPath outPath = 
-  fmap (unlines . map (\(ts,m) -> "["++show ts++"] "++m) . whatWentWrong) (parse inPath) >>= writeFile outPath 
-
-
--}
