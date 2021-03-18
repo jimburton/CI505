@@ -101,7 +101,7 @@ whatWentWrong =
 
     Or without a do block at all and using (>>=) to pass the output from
     one IO action to another. Note that this function is a single expression
-    and could be on one line but I broke it over two lines to make it easier to re:
+    and could be on one line but I broke it over two lines to make it easier to read:
 
     processLogFile inPath outPath = 
       fmap (unlines . map (\(ts,m) -> "["++show ts++"] "++m) . whatWentWrong) (parse inPath)
