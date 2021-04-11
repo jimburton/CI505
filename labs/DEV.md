@@ -282,7 +282,7 @@ Perhaps:
 1 hint
 ```
 
-<a name="style"/>
+<a name="editors"/>
 
 ## Editors for Haskell development
 
