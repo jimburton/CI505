@@ -339,7 +339,7 @@ need to install several additional "minor" modes that will run
 alongside `haskell-mode`. It isn't essential to
 use an IDE for Haskell development and you can be very productive with
 just a powerful editor (emacs + `haskell-mode`) and `ghci`. Whether
-you feel that you need to bother with the following steps is of course
+you feel that you need to bother going further than that is of course
 up to you.
 
 There are quite a few options but IMO the best at the time of writing
