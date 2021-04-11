@@ -306,7 +306,7 @@ For integration between emacs and `git`, see [`magit`](https://magit.vc/).
 The emacs mode for Haskell, `haskell-mode`, is good but
 (intentionally) basic. It provides syntax highlighting and a way to
 launch `ghci`. Modifying emacs (e.g.  by installing additional modes)
-is done by editing the config file, `~/.emacs`. To install
+is done by editing the config file, usually `~/.emacs`. To install
 `haskell-mode` add the following to your copy of `.emacs`.
 
 ```
