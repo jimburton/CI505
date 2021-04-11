@@ -1,5 +1,10 @@
 # Haskell development environment
 
++ [Working with projects](#projects)
++ [Writing Haskell with style](#style)
++ [Editors for Haskell development](#editors)
+
+<a name="projects"/>
 ## Working with projects
 
 If you're working on a very small script or program that fits into one
@@ -252,6 +257,7 @@ See the
 [docs](https://www.haskell.org/cabal/users-guide/developing-packages.html)
 for full information on `cabal`.
 
+<a name="style"/>
 ## Writing Haskell with style
 
 The way that you format and organise your code is important. It has an enormous effect on 
@@ -274,6 +280,7 @@ Perhaps:
 1 hint
 ```
 
+<a name="style"/>
 ## Editors for Haskell development
 
 There are quite a few editors that support Haskell development,
