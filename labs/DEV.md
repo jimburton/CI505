@@ -366,7 +366,7 @@ the following steps:
   (use-package which-key
   :ensure t)
   (which-key-mode)
-  ;; flycheck is for checking errors on the fly
+  ;; flycheck and flycheck-haskell are for checking errors on the fly
   (use-package flycheck
 	  :ensure t
 	  :defer 2
@@ -383,10 +383,14 @@ the following steps:
          (haskell-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
 	 :commands lsp)
-  (setq lsp-keymap-prefix "s-l")
   ;; for showing hints etc from lsp-mode
   (use-package lsp-ui
 	  :ensure t)
+  ;; All of the lsp commands will begin `s-l`, i.e. by holding down the 
+  ;; Super key and l. The super key is the Windows key on Windowsy keyboards.
+  ;; Thanks to whichkey you can type s-l then wait to get a list of all possible 
+  ;; completions, which is a good way to find out what lsp-mode can do.
+  (setq lsp-keymap-prefix "s-l")
   ;; haskell integration with lsp-mode
   (use-package lsp-haskell
 	  :ensure t)
@@ -397,13 +401,14 @@ the following steps:
 	  :ensure t)
   (push 'company-ghci company-backends)
   (add-hook 'haskell-mode-hook 'company-mode)
-  (global-set-key (kbd "C-x .") 'completion-at-point)
+  (global-set-key (kbd "s-l i") 'lsp-ui-imenu)
+  (global-set-key (kbd "s-l .") 'completion-at-point)
   ```
   If all of this is working then you can now open a Haskell file in emacs and 
   do things like hold the pointer over any identifier to see its documentation, 
   right-click on an identifier to open a context menu enabling you to jump
   to the definition, open an `imenu` frame showing the structure
-  of the current module with `M-x lsp-ui-imenu`, and so on. 
+  of the current module with `s-l i`, and so on. 
   
   The Haskell Language Server is a work in progress and you should
   check the site for major updates. Refactoring tasks like renaming a
