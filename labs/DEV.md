@@ -299,7 +299,7 @@ There is a list of options which is kept up to date on the Haskell
 wiki [here](https://wiki.haskell.org/IDEs).
 
 I think the best option is to learn one of the "poweruser" editors,
-vim or emacs - I use emacs. 
+[vim](https://www.vim.org/) or [emacs](https://www.gnu.org/software/emacs/). I use emacs. 
 
 ### Emacs for Haskell development
 
