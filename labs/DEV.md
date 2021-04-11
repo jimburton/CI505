@@ -349,7 +349,7 @@ Protocol](https://github.com/Microsoft/language-server-protocol/),
 which is a general framework for creating IDEs. To get it running try
 the following steps:
 
-+ Download the [Haskell Language
++ Download the binaries for the [Haskell Language
   Server](https://github.com/haskell/haskell-language-server/releases) and put
   them somewhere in your `PATH`. You need to download the tarball matching your 
   OS *and* your version of GHC. I put the binaries in `~/bin/`, which is included
