@@ -289,7 +289,7 @@ There is a list of options which is kept up to date on the Haskell
 wiki [here](https://wiki.haskell.org/IDEs).
 
 I think the best option is to learn one of the "poweruser" editors,
-`vim` or `emacs` - I use `emacs`. 
+vim or emacs - I use emacs. 
 
 ### Emacs for Haskell development
 
@@ -301,11 +301,13 @@ Before you do anything else, go through the emacs tutorial. This is
 launched by opening emacs and typing `C-h t`.  That is, hold down
 `Ctrl` and press `h`, let go of both and press `t`.
 
-The emacs mode for Haskell, `haskell-mode`, is pretty basic. It provides
-syntax highlighting and a way to launch `ghci`. Modifying emacs (e.g.
-by installing additional modes) is done by editing the config file,
-`~/.emacs`. To install `haskell-mode` add the following to your
-copy of `.emacs`.
+For integration between emacs and `git`, see [`magit`](https://magit.vc/).
+
+The emacs mode for Haskell, `haskell-mode`, is good but
+(intentionally) basic. It provides syntax highlighting and a way to
+launch `ghci`. Modifying emacs (e.g.  by installing additional modes)
+is done by editing the config file, `~/.emacs`. To install
+`haskell-mode` add the following to your copy of `.emacs`.
 
 ```
 ;; sets up the emacs package manager and the use-package macro
