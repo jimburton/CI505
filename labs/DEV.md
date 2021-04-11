@@ -289,54 +289,121 @@ There is a list of options which is kept up to date on the Haskell
 wiki [here](https://wiki.haskell.org/IDEs).
 
 I think the best option is to learn one of the "poweruser" editors,
-`vim` or `emacs` - I use `emacs`. Once you get used to the quirky
-keybindings and terminology it is a *very* powerful editor that has
-modes for every programming language under the sun. Start with the
-tutorial. Open emacs and type `C-h t`. That is, hold down `Ctrl` and press
-`h`, let go of both and press `t`). 
+`vim` or `emacs` - I use `emacs`. 
 
-There is some guidance on getting set up for developing haskell in
-emacs [here](https://wiki.haskell.org/Emacs). In short, the `emacs`
-"major mode" called `haskell-mode` provides the basic syntax
-highlighting, ability to launch `ghci` and so on. You can install a
-"minor mode" alongside that to provide an interface to the
-interpreter, allowing you to query the type of expressions and so
-on. Currently (2020), I like [`dante`](https://github.com/jyp/dante). 
-You can give this combination a try by adding the following to your
-`emacs` config file, `~/.emacs`:
+### Emacs for Haskell development
+
+Once you get used to the quirky keybindings and terminology emacs is a
+*very* powerful editor that has "modes" for every programming language
+under the sun. 
+
+Before you do anything else, go through the emacs tutorial. This is
+launched by opening emacs and typing `C-h t`.  That is, hold down
+`Ctrl` and press `h`, let go of both and press `t`.
+
+The emacs mode for Haskell, `haskell-mode`, is pretty basic. It provides
+syntax highlighting and a way to launch `ghci`. Modifying emacs (e.g.
+by installing additional modes) is done by editing the config file,
+`~/.emacs`. To install `haskell-mode` add the following to your
+copy of `.emacs`.
 
 ```
+;; sets up the emacs package manager and the use-package macro
 (require 'package)
 (add-to-list 'package-archives
-	 '("melpa" . "https://melpa.org/packages/"))
-
+	 '("melpa" . "https://melpa.org/packages/")
+	 )
 (package-initialize)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-
 (eval-when-compile
   (require 'use-package))
+  
+;; makes sure emacs gets your PATH right
+(use-package exec-path-from-shell
+	     :ensure t)
+(exec-path-from-shell-initialize)
 
+;; installs haskell-mode
 (use-package haskell-mode
   :ensure t)
-(add-hook 'haskell-mode-hook #'hindent-mode)
-(let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
-(setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
-(add-to-list 'exec-path my-cabal-path))
-(require 'haskell-interactive-mode)
-(require 'haskell-process)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
-(use-package dante
-  :ensure t
-  :after haskell-mode
-  :commands 'dante-mode
-  :init
-  (add-hook 'haskell-mode-hook 'flycheck-mode)
-  (add-hook 'haskell-mode-hook 'dante-mode))
 ```
 
+To get something like a modern IDE experience (autocompletion,
+highlighting errors, jumping to the definition of functions, showing
+the docs for a function or type when you hover over it, etc etc) you
+need to install several additional "minor" modes that will run
+alongside `haskell-mode`. It isn't essential to
+use an IDE for Haskell development and you can be very productive with
+just a powerful editor (emacs + `haskell-mode`) and `ghci`. Whether
+you feel that you need to bother with the following steps is of course
+up to you.
+
+There are quite a few options but IMO the best at the time of writing
+(2021) is `lsp-mode`. This is an emacs interface to the [Language
+Server
+Protocol](https://github.com/Microsoft/language-server-protocol/),
+which is a general framework for creating IDEs. To get it running try
+the following steps:
+
++ Download the [Haskell Language
+  Server](https://github.com/haskell/haskell-language-server/releases) and put
+  them somewhere in your `PATH`. You need to download the tarball matching your 
+  OS *and* your version of GHC. I put the binaries in `~/bin/`, which is included
+  in my `PATH`.
++ Install the various minor modes that connect the Haskell Language
+  Server to emacs and provide autocompletion etc. The snippet below is
+  how I'm doing it -- you could certainly make do with less. My `.emacs`
+  file is very messy and diverges from best practice in many ways but
+  if you're interested it's
+  [here](https://github.com/jimburton/dot-files/blob/master/.emacs).
+  
+  ```elisp
+  ;; which-key is useful for finding which keys are bound in different modes
+  (use-package which-key
+  :ensure t)
+  (which-key-mode)
+  ;; flycheck is for checking errors on the fly
+  (use-package flycheck
+	  :ensure t
+	  :defer 2
+	  :diminish
+	  :init (global-flycheck-mode)
+	  :custom
+	  (flycheck-display-errors-delay .3))
+  (use-package flycheck-haskell
+	  :ensure t)
+  ;; the main lsp-mode
+  (use-package lsp-mode
+	  :init
+	  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (haskell-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+	 :commands lsp)
+  (setq lsp-keymap-prefix "s-l")
+  ;; for showing hints etc from lsp-mode
+  (use-package lsp-ui
+	  :ensure t)
+  ;; haskell integration with lsp-mode
+  (use-package lsp-haskell
+	  :ensure t)
+  (add-hook 'haskell-mode-hook #'lsp)
+  (add-hook 'haskell-literate-mode-hook #'lsp)
+  ;; autocompletion in Haskell files
+  (use-package company-ghci
+	  :ensure t)
+  (push 'company-ghci company-backends)
+  (add-hook 'haskell-mode-hook 'company-mode)
+  (global-set-key (kbd "C-x .") 'completion-at-point)
+  ```
+  If all of this is working then you can now open a Haskell file in emacs and 
+  do things like hold the pointer over any identifier to see its documentation, 
+  right-click on an identifier to open a context menu enabling you to jump
+  to the definition, open an `imenu` frame showing the structure
+  of the current module with `M-x lsp-ui-imenu`, and so on. 
+  
+  The Haskell Language Server is a work in progress and you should
+  check the site for major updates. Refactoring tasks like renaming a
+  function across a project doesn't work (yet) but emacs is good at
+  that sort of thing anyway.
