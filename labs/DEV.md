@@ -313,11 +313,21 @@ launched by opening emacs and typing `C-h t`.  That is, hold down
 
 For integration between emacs and `git`, see [`magit`](https://magit.vc/).
 
-The emacs mode for Haskell, `haskell-mode`, is good but
-(intentionally) basic. It provides syntax highlighting and a way to
-launch `ghci`. Modifying emacs (e.g.  by installing additional modes)
-is done by editing the config file, usually `~/.emacs`. To install
-`haskell-mode` add the following to your copy of `.emacs`.
+At a minimum, you want to install the emacs "major" mode for Haskell,
+`haskell-mode`.  `haskell-mode` is intentionally basic. It provides
+syntax highlighting and a way to launch `ghci`. To get something like
+a modern IDE experience (autocompletion, highlighting errors, jumping
+to the definition of functions, showing the docs for a function or
+type when you hover over it, etc etc) you need to install several
+additional "minor" modes that will run alongside `haskell-mode`. It
+really isn't essential to use an IDE for Haskell development. You
+can be very productive with just a powerful editor (emacs +
+`haskell-mode`) and `ghci`. Whether you feel that you need to bother
+going further than that is up to you.
+
+Modifying emacs is done by editing the config file, usually
+`~/.emacs`. To install `haskell-mode` add the following to your copy
+of `.emacs`.
 
 ```elisp
 ;; sets up the emacs package manager and the use-package macro
@@ -342,22 +352,12 @@ is done by editing the config file, usually `~/.emacs`. To install
   :ensure t)
 ```
 
-To get something like a modern IDE experience (autocompletion,
-highlighting errors, jumping to the definition of functions, showing
-the docs for a function or type when you hover over it, etc etc) you
-need to install several additional "minor" modes that will run
-alongside `haskell-mode`. It isn't essential to
-use an IDE for Haskell development and you can be very productive with
-just a powerful editor (emacs + `haskell-mode`) and `ghci`. Whether
-you feel that you need to bother going further than that is of course
-up to you.
-
-There are quite a few options but IMO the best at the time of writing
-(2021) is `lsp-mode`. This is an emacs interface to the [Language
-Server
+There are quite a few options for getting more bells and whistles than
+`haskell-mode` provides. IMO the best at the time of writing (2021) is
+`lsp-mode`. This is an emacs interface to the [Language Server
 Protocol](https://github.com/Microsoft/language-server-protocol/),
-which is a general framework for creating IDEs. To get it running try
-the following steps:
+which is a general framework for creating IDEs. To get it running
+follow these steps:
 
 + Download the binaries for the [Haskell Language
   Server](https://github.com/haskell/haskell-language-server/releases) and put
@@ -397,24 +397,24 @@ the following steps:
   (use-package lsp-ui
 	  :ensure t)
   ;; All of the lsp commands will begin `s-l`, i.e. by holding down the 
-  ;; Super key and l. The super key is the Windows key on Windowsy keyboards.
-  ;; Thanks to whichkey you can type s-l then wait to get a list of all possible 
+  ;; "super" key and l. The super key is the Windows key on MS keyboards.
+  ;; Thanks to which-key you can type s-l then wait to get a list of all possible 
   ;; completions, which is a good way to find out what lsp-mode can do.
   (setq lsp-keymap-prefix "s-l")
-  ;; haskell integration with lsp-mode
+  ;; Haskell integration with lsp-mode
   (use-package lsp-haskell
 	  :ensure t)
   (add-hook 'haskell-mode-hook #'lsp)
   (add-hook 'haskell-literate-mode-hook #'lsp)
-  ;; autocompletion in Haskell files
+  ;; Autocompletion in Haskell files
   (use-package company-ghci
 	  :ensure t)
   (push 'company-ghci company-backends)
   (add-hook 'haskell-mode-hook 'company-mode)
-  ;; turn off some noisy defaults
+  ;; Turn off some noisy defaults
   (setq lsp-ui-sideline-show-code-actions nil
         lsp-ui-doc-show-with-cursor nil)
-  ;; a few handy keybindings. These should only be set in the lsp keymap 
+  ;; A few handy keybindings. These should really only be set in the lsp keymap 
   ;; but I can't get that working atm :-/
   (global-set-key (kbd "s-l i") 'lsp-ui-imenu)
   (global-set-key (kbd "s-l d") 'lsp-ui-doc-show)
