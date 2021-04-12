@@ -411,7 +411,14 @@ the following steps:
 	  :ensure t)
   (push 'company-ghci company-backends)
   (add-hook 'haskell-mode-hook 'company-mode)
+  ;; turn off some noisy defaults
+  (setq lsp-ui-sideline-show-code-actions nil
+        lsp-ui-doc-show-with-cursor nil)
+  ;; a few handy keybindings. These should only be set in the lsp keymap 
+  ;; but I can't get that working atm :-/
   (global-set-key (kbd "s-l i") 'lsp-ui-imenu)
+  (global-set-key (kbd "s-l d") 'lsp-ui-doc-show)
+  (global-set-key (kbd "s-l q") 'lsp-ui-doc-hide)
   (global-set-key (kbd "s-l .") 'completion-at-point)
   ```
   If all of this is working then you can now open a Haskell file in emacs and 
