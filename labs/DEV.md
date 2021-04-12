@@ -21,8 +21,8 @@ Haskell projects --
 [`stack`](https://docs.haskellstack.org/en/stable/README/) and
 [`cabal`](https://www.haskell.org/cabal/). We will be using `cabal`.
 
-`cabal` is installed as part of the Haskell platform but it may be an older
-version that needs to be upgraded. Start by entering these commands
+`cabal` is installed as part of the Haskell platform but you should
+make sure you have the latest version. Start by entering these commands
 into a terminal:
 
 ```bash
@@ -35,11 +35,11 @@ This will download the latest list of packages from the "Hackage"
 repository (which is where haskell developers upload libraries and
 other software for distribution) and install the latest version of
 `cabal`. The default location for packages is
-`~/.cabal/bin`, where `~` is your home directory,
-e.g. on Linux it might be something like `/home/ab123`. So to run 
+`~/.cabal/bin`, where `~` is your home directory.
+On Linux it might be something like `/home/ab123`. To run 
 programs installed by `cabal` (such as the
 new version of it you just installed), you need to
-add this location to your `PATH` variable. This is an environment
+add `~/.cabal/bin` to your `PATH`. This is an environment
 variable containing a list of locations in the file system that Bash
 will look in when you type a command in to a
 terminal. On Linux you can check the current state of `PATH` like this:
