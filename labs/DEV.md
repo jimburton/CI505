@@ -305,11 +305,9 @@ I think the best option is to learn one of the "poweruser" editors,
 
 Once you get used to the quirky keybindings and terminology emacs is a
 *very* powerful editor that has "modes" for every programming language
-under the sun. 
-
-Before you do anything else, go through the emacs tutorial. This is
-launched by opening emacs and typing `C-h t`.  That is, hold down
-`Ctrl` and press `h`, let go of both and press `t`.
+under the sun. Before you do anything else, go through the emacs
+tutorial. This is launched by opening emacs and typing `C-h t`.  That
+is, hold down `Ctrl` and press `h`, let go of both and press `t`.
 
 For integration between emacs and `git`, see [`magit`](https://magit.vc/).
 
