@@ -319,7 +319,7 @@ launch `ghci`. Modifying emacs (e.g.  by installing additional modes)
 is done by editing the config file, usually `~/.emacs`. To install
 `haskell-mode` add the following to your copy of `.emacs`.
 
-```
+```elisp
 ;; sets up the emacs package manager and the use-package macro
 (require 'package)
 (add-to-list 'package-archives
