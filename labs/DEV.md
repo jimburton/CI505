@@ -354,8 +354,12 @@ There are quite a few options for getting more bells and whistles than
 `haskell-mode` provides. IMO the best at the time of writing (2021) is
 `lsp-mode`. This is an emacs interface to the [Language Server
 Protocol](https://github.com/Microsoft/language-server-protocol/),
-which is a general framework for creating IDEs. To get it running
-follow these steps:
+which is a general framework for creating IDEs. The Haskell Language
+Server is a work in progress and if you are going to use it you should
+periodically check the site below for major updates. Refactoring tasks
+like renaming a function across an entire project don't work (yet)
+but emacs is good at that sort of thing anyway. To get `lsp-mode`
+running follow these steps:
 
 + Download the binaries for the [Haskell Language
   Server](https://github.com/haskell/haskell-language-server/releases) and put
@@ -424,8 +428,3 @@ follow these steps:
   right-click on an identifier to open a context menu enabling you to jump
   to the definition, open an `imenu` frame showing the structure
   of the current module with `s-l i`, and so on. 
-  
-  The Haskell Language Server is a work in progress and you should
-  check the site for major updates. Refactoring tasks like renaming a
-  function across a project doesn't work (yet) but emacs is good at
-  that sort of thing anyway.
