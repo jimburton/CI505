@@ -47,6 +47,33 @@ If you want an additional exercise this week, have a go at
 
 Read [these slides](labs/huffman-slides.pdf) on Huffman Trees, then [implement them](labs/huffman/README.md) in Haskell.
 
+## Week 8
+
+In the lectures this week we discussed the [Scrabble project](https://github.com/jimburton/scrabble).
+Read the first chapter and complete the exercises at the end of it.
+
+## Week 9
+
+Read chapter two of the [Scrabble project](https://github.com/jimburton/scrabble).
+and complete the exercises at the end of it.
+
+## Week 10
+
+Complete the exercise on the
+[change](https://github.com/jimburton/change) repository to make it
+use the `State` monad.
+
+## Week 11
+
+[Parsing using AttoParsec](https://github.com/jimburton/simple-log-parser).
+
+## Week 12 
+
+[Webservices with Haskell](https://github.com/jimburton/haskell-webservice/blob/master/README.md). 
+Note that this time-consuming exercise lives in its own repository. Although you may not have
+time to complete it, you can always use it as a basic reference on the Happstack web framework.
+
+<!---
 
 ## Week 8
 
@@ -63,3 +90,4 @@ use the `State` monad.
 [Webservices with Haskell](https://github.com/jimburton/haskell-webservice/blob/master/README.md). 
 Note that this time-consuming exercise lives in its own repository. Although you may not have
 time to complete it, you can always use it as a basic reference on the Happstack web framework.
+-->
