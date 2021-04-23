@@ -416,12 +416,11 @@ running follow these steps:
   ;; Turn off some noisy defaults
   (setq lsp-ui-sideline-show-code-actions nil
         lsp-ui-doc-show-with-cursor nil)
-  ;; A few handy keybindings. These should really only be set in the lsp keymap 
-  ;; but I can't get that working atm :-/
-  (global-set-key (kbd "s-l i") 'lsp-ui-imenu)
-  (global-set-key (kbd "s-l d") 'lsp-ui-doc-show)
-  (global-set-key (kbd "s-l q") 'lsp-ui-doc-hide)
-  (global-set-key (kbd "s-l .") 'completion-at-point)
+  ;; A few handy keybindings. 
+  (define-key lsp-command-map (kbd "i") 'lsp-ui-imenu)
+  (define-key lsp-command-map (kbd "d") 'lsp-ui-doc-show)
+  (define-key lsp-command-map (kbd "q") 'lsp-ui-doc-hide)
+  (define-key lsp-command-map (kbd ".") 'completion-at-point)
   ```
   If all of this is working then you can now open a Haskell file in emacs and 
   do things like hold the pointer over any identifier to see its documentation, 
