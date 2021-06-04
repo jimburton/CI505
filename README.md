@@ -42,7 +42,7 @@ on this and/or have a go at subsequent exercises.
 
 ## Week 8
 
-Read [these slides](labs/huffman-slides.pdf) on Huffman Trees, then [implement them](labs/Huffman-Trees.hs) in Haskell.
+TODO
 
 ## Week 9
 
