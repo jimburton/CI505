@@ -45,7 +45,7 @@ If you want an additional exercise this week, have a go at
 
 ## Week 7
 
-Read [these slides](labs/huffman-slides.pdf) on Huffman Trees, then [implement them](labs/huffman/README.md) in Haskell.
+TODO
 
 ## Week 8
 
