@@ -115,7 +115,7 @@ executable myproject
   main-is:             Main.hs
   -- other-modules:
   -- other-extensions:
-  build-depends:       base
+  build-depends:       base >=4.10 && <4.11
   -- hs-source-dirs:
   default-language:    Haskell2010
 
@@ -361,7 +361,11 @@ like renaming a function across an entire project don't work (yet)
 but emacs is good at that sort of thing anyway. To get `lsp-mode`
 running follow these steps:
 
-+ Install the Haskell Language Server using [GHCup](https://www.haskell.org/ghcup/).
++ Download the binaries for the [Haskell Language
+  Server](https://github.com/haskell/haskell-language-server/releases) and put
+  them somewhere in your `PATH`. You need to download the tarball matching your 
+  OS *and* your version of GHC. I put the binaries in `~/bin/`, which is included
+  in my `PATH`.
 + Install the various minor modes that connect the Haskell Language
   Server to emacs and provide autocompletion etc. The snippet below is
   how I'm doing it -- you could certainly make do with less. My `.emacs`

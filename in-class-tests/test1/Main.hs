@@ -80,37 +80,36 @@ Run these from the interpreter by invoking quickCheck, e.g.
 
 -}
 
-prop_myTakeWhile (NonEmpty xs) = (<3) (head xs) ==> 
+prop_myTakeWhile xs = not (null xs) ==> (<3) (head xs) ==> 
                       length xs >= length (myTakeWhile (<3) xs)
                           where types = xs::[Int]
-                                
-prop_myTakeWhileNot (NonEmpty xs) = not ((<3) (head xs)) ==> 
+prop_myTakeWhileNot xs = not (null xs) ==> not ((<3) (head xs)) ==> 
                          null (myTakeWhile (<3) xs)
                              where types = xs::[Int]
 
-prop_penultimate :: NonEmptyList Int -> Bool
-prop_penultimate (NonEmpty xs) = penultimate xs `elem` xs
+prop_penultimate :: [Int] -> Property
+prop_penultimate xs = length xs > 1 ==> penultimate xs `elem` xs
 
-prop_penultimate2 :: NonEmptyList Int -> Bool
-prop_penultimate2 (NonEmpty xs) = penultimate xs == xs !! ((length xs)-2)
+prop_penultimate2 :: [Int] -> Property
+prop_penultimate2 xs = length xs > 1 ==> penultimate xs == xs !! ((length xs)-2)
 
-prop_findK :: Positive Int -> NonEmptyList Int -> Property
-prop_findK (Positive k) (NonEmpty xs) = k < length xs ==> 
+prop_findK :: Int -> [Int] -> Property
+prop_findK k xs = k >= 0 && k < length xs ==> 
                   (findK k xs) `elem` xs
 
-prop_isPalindrome :: Bool
-prop_isPalindrome = and [isPalindrome [1]
-                        , isPalindrome [123454321] ]
+prop_isPalindrome :: [Char] -> Bool
+prop_isPalindrome xs = and [isPalindrome [1]
+                           , isPalindrome [123454321] ]
 
 prop_duplicate :: [Int] -> Bool
 prop_duplicate xs = length (duplicate xs) == (length xs) * 2
 
-prop_splitAtIndex :: Positive Int -> [Int] -> Bool
-prop_splitAtIndex (Positive k) xs = ys ++ zs == xs
+prop_splitAtIndex :: Int -> [Int] -> Property
+prop_splitAtIndex k xs = k >= 0 ==> ys ++ zs == xs
     where (ys, zs) = splitAtIndex k xs
 
-prop_splitAtIndex2 :: Positive Int -> [Int] -> Property
-prop_splitAtIndex2 (Positive k) xs = k < length xs ==> length ys == k+1
+prop_splitAtIndex2 :: Int -> [Int] -> Property
+prop_splitAtIndex2 k xs = k >= 0 && k < length xs ==> length ys == k+1
     where (ys, _) = splitAtIndex k xs
 
 prop_splitAtIndex3 :: Int -> [Int] -> Bool
@@ -123,18 +122,18 @@ prop_dropK xs = dropK 0 xs == xs
 prop_dropK2 :: [Int] -> Bool
 prop_dropK2 xs = dropK (length xs) xs == []
 
-prop_dropK3 :: NonEmptyList Int -> Bool
-prop_dropK3 (NonEmpty xs) = dropK 1 xs == tail xs
+prop_dropK3 :: [Int] -> Property
+prop_dropK3 xs = not (null xs) ==> dropK 1 xs == tail xs
 
-prop_slice :: Positive Int -> Positive Int -> [Int] -> Property
-prop_slice (Positive i) (Positive k) l = i < k ==>
+prop_slice :: Int -> Int -> [Int] -> Property
+prop_slice i k l = i >= 0 && k >= 0 && i < k ==>
                    slice i k l == take (k-i) (drop i l)
 
 prop_insertElem :: Int -> Int -> [Int] -> Bool
 prop_insertElem x i xs = length (insertElem x i xs) == length xs + 1
 
 prop_insertElem2 x i xs = x `elem` (insertElem x i xs) 
-prop_insertElem3 x (Positive i) xs = i < length xs ==> (insertElem x i xs)!!i' == x
+prop_insertElem3 x i xs = i >= 0 && i < length xs ==> (insertElem x i xs)!!i' == x
     where i' = if i == 0 then i else i-1
 
 prop_rotate :: Int -> [Int] -> Bool
