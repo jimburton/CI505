@@ -4,6 +4,7 @@
 -}
 module Main where
 
+import Prelude hiding (takeWhile)
 import Test.QuickCheck
 
 {- 1. Complete the following function where myTakeWhile p xs returns
@@ -11,8 +12,8 @@ elements of xs as a list until it reaches an element of \texttt{xs}
 for which \texttt{p} is false. For example, myTakeWhile (\x -> x < 3) [1, 2, 3, 4]
 returns [1, 2]. -}
 
-myTakeWhile :: (a -> Bool) -> [a] -> [a] 
-myTakeWhile p xs = undefined
+takeWhile :: (a -> Bool) -> [a] -> [a] 
+takeWhile p xs = undefined
 
 {- 2. Find the penultimate (second to last) element in list l. Behaviour is 
   undefined if the list has fewer than 2 elements. -}
@@ -28,8 +29,8 @@ findK k l = undefined
 
 {- 4. Determine if a list, l, is a palindrome. -}
 
-isPalindrome :: Eq a => [a] -> Bool
-isPalindrome l = undefined
+palindrome :: Eq a => [a] -> Bool
+palindrome l = undefined
 
 {- 5. Duplicate the elements in list xs. For example duplicate [1,2,3] should
   give the list [1,1,2,2,3,3]. Hint: The concat [l] function flattens a list
@@ -81,10 +82,10 @@ Run these from the interpreter by invoking quickCheck, e.g.
 -}
 
 prop_myTakeWhile xs = not (null xs) ==> (<3) (head xs) ==> 
-                      length xs >= length (myTakeWhile (<3) xs)
+                      length xs >= length (takeWhile (<3) xs)
                           where types = xs::[Int]
 prop_myTakeWhileNot xs = not (null xs) ==> not ((<3) (head xs)) ==> 
-                         null (myTakeWhile (<3) xs)
+                         null (takeWhile (<3) xs)
                              where types = xs::[Int]
 
 prop_penultimate :: [Int] -> Property
@@ -98,8 +99,8 @@ prop_findK k xs = k >= 0 && k < length xs ==>
                   (findK k xs) `elem` xs
 
 prop_isPalindrome :: [Char] -> Bool
-prop_isPalindrome xs = and [isPalindrome [1]
-                           , isPalindrome [123454321] ]
+prop_isPalindrome xs = and [palindrome [1]
+                           , palindrome [123454321] ]
 
 prop_duplicate :: [Int] -> Bool
 prop_duplicate xs = length (duplicate xs) == (length xs) * 2
