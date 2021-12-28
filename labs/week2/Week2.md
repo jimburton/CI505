@@ -1,7 +1,7 @@
 # Exercise Sheet 2
 
-Add your solutions to the following problems to the file
-`labs/week2/src/Week2.hs`. Test your work in `ghci` and reload
+`cd` to `labs/week2` and run the REPL. Add your solutions to the following problems to the file
+`labs/week2/src/Week2.hs`. Test your work in the REPL and reload
 when you make changes:
 
 ```
@@ -103,7 +103,7 @@ that instead of the structure suggested above.
    `Show` typeclass. It needs two constructors: `Single a`, to
    represent a single occurence of a character in a list, and
    `Multiple Int a` to represent several consecutive occurrences of a
-   value. 
+   value. Some example values of `RLE Char` are `(Single 'x')` and `(Multiple 3 'y')`. 
    
    Create a modified version of the `encode` function that produces a
    list of `RLE a` values instead of pairs -- `encodeRLE :: Eq a =>
