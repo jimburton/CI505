@@ -132,7 +132,7 @@ a tail is one plus the length of the tail.
    returns `xs` with its first `n` elements removed. Make a function
    with three equations using pattern matching:
    
-   ```
+   ```haskell
    drop :: Int -> [a] -> [a] -> [a]
    drop 0 xs     = ...
    drop n []     = ...
