@@ -89,12 +89,12 @@ the REPL.
 1. Edit `Week1.hs` to write a function `square :: Int -> Int` which returns the square
 of a number. Test your work in ghci as follows:
 
-```
-> :reload 
-> square 5
-```
+   ```
+   > :reload 
+   > square 5
+   ```
 
-Try calling `square` with a few numbers. What happens when you execute `square True`?
+   Try calling `square` with a few numbers. What happens when you execute `square True`?
 
 2. Use `square` to write a function `sumsquare :: Int -> Int -> Int` which
 returns the sum of the squares of its two arguments.
@@ -103,7 +103,7 @@ returns the sum of the squares of its two arguments.
 value and a list of values of the same type, and returns a
 boolean.
 
-  Your function should use
+   Your function should use
 *pattern matching* to return `True` if the first argument is an *element* of
 the list (hence the name). There should be two equations in the definition of the function --
 the first will be one which pattern matches the empty list. This should return `False`, since nothing
@@ -113,7 +113,7 @@ found is equal to the head of the list. If not, the function should return
 the result of calling itself recursively on the tail of the list. Your function
 will have the structure below. 
 
-    Note the *typeclass constraint* `Eq a` -- the type of the things in
+   Note the *typeclass constraint* `Eq a` -- the type of the things in
 the list, `a`, must be a type that can be compared for equality:
 
    ```haskell
