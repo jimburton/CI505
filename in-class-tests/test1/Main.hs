@@ -4,16 +4,17 @@
 -}
 module Main where
 
+import Prelude hiding (takeWhile)
 import Test.QuickCheck
 
-{- 1. Complete the following function where myTakeWhile p xs returns
-elements of xs as a list until it reaches an element of \texttt{xs}
-for which \texttt{p} is false. For example, myTakeWhile (\x -> x < 3) [1, 2, 3, 4]
+{- 1. Complete the following function where takeWhile p xs returns
+elements of xs as a list until it reaches an element of xs
+for which p is false. For example, takeWhile (\x -> x < 3) [1, 2, 3, 4]
 returns [1, 2]. -}
 
-myTakeWhile :: (a -> Bool) -> [a] -> [a] 
-myTakeWhile p [] = []
-myTakeWhile p (x:xs) = if p x then x : myTakeWhile p xs else []
+takeWhile :: (a -> Bool) -> [a] -> [a] 
+takeWhile p [] = []
+takeWhile p (x:xs) = if p x then x : takeWhile p xs else []
 
 {- 2. Find the penultimate (second to last) element in list l. Behaviour is 
   undefined if the list has fewer than 2 elements. -}
@@ -29,8 +30,8 @@ findK k l = if k == 0 then head l else findK (k-1) $ tail l
 
 {- 4. Determine if a list, l, is a palindrome. -}
 
-isPalindrome :: Eq a => [a] -> Bool
-isPalindrome l = l == (reverse l)
+palindrome :: Eq a => [a] -> Bool
+palindrome l = l == (reverse l)
 
 {- 5. Duplicate the elements in list xs. For example duplicate [1,2,3] should
   give the list [1,1,2,2,3,3]. Hint: The concat [l] function flattens a list
