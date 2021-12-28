@@ -7,9 +7,9 @@ module Main where
 import Prelude hiding (takeWhile)
 import Test.QuickCheck
 
-{- 1. Complete the following function where myTakeWhile p xs returns
-elements of xs as a list until it reaches an element of \texttt{xs}
-for which \texttt{p} is false. For example, myTakeWhile (\x -> x < 3) [1, 2, 3, 4]
+{- 1. Complete the following function where takeWhile p xs returns
+elements of xs as a list until it reaches an element of xs
+for which p is false. For example, takeWhile (<3) [1, 2, 3, 4]
 returns [1, 2]. -}
 
 takeWhile :: (a -> Bool) -> [a] -> [a] 
