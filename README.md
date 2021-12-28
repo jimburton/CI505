@@ -9,11 +9,11 @@ practice with Haskell.
 
 ## Week 1
 
-[Getting started](labs/Week1.md).
+[Getting started](labs/week1/Week1.md).
 
 ## Week 2
 
-[More practice with lists](labs/Week2.md).
+[More practice with lists](labs/week2/Week2.md).
 
 ## Week 3
 
