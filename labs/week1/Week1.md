@@ -43,9 +43,12 @@ GHCi, version 9.0.1: https://www.haskell.org/ghc/  :? for help
 Ok, one module loaded.
 ghci> 
 ```
-Note that this command has loaded the Haskell script `Week1.hs`, which is currently empty into `ghci`.
-You can type any Haskell expression into the `ghci` "REPL" (Read-Eval-Print-Loop) and it will be evaluated. 
-Enter a list of the integers from 1 to 10 using the range syntax:
+
+Note that this command has loaded the Haskell script `Week1.hs`, which
+is currently empty, into `ghci`.  You can type any Haskell expression
+into the `ghci` "REPL" (Read-Eval-Print-Loop) and it will be
+evaluated.  Enter a list of the integers from 1 to 10 using the range
+syntax:
 
 ```
 λ> [1..10]

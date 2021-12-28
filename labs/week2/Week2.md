@@ -1,9 +1,14 @@
 # Exercise Sheet 2
 
-Add your solutions to the following problems to the file you created last time. When you make changes you need to reload the file in ghci:
+Add your solutions to the following problems to the file
+`labs/week2/src/Week2.hs`. Test your work in `ghci` and reload
+when you make changes:
 
 ```
-> :reload Exercises
+$ cd labs/week2
+$ cabal repl
+... 
+> :reload 
 ```
 
 **Hint:** use the hints given for each exercise.
