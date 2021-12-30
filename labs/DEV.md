@@ -305,13 +305,13 @@ I think the best option is to learn one of the "poweruser" editors,
 
 Once you get used to the quirky keybindings and terminology emacs is a
 *very* powerful editor that has "modes" for every programming language
-under the sun. Before you do anything else, go through the emacs
-tutorial. This is launched by opening emacs and typing `C-h t`.  That
-is, hold down `Ctrl` and press `h`, let go of both and press `t`.
+under the sun. The [Emacs for You](https://github.com/susam/emfy)
+project provides an introduction to programming in Emacs and a small,
+feature-rich configuration.
 
-For integration between emacs and `git`, see [`magit`](https://magit.vc/).
+For integration between Emacs and `git`, see [`magit`](https://magit.vc/).
 
-At a minimum, you want to install the emacs "major" mode for Haskell,
+At a minimum, you want to install the Emacs "major" mode for Haskell,
 `haskell-mode`.  `haskell-mode` is intentionally basic. It provides
 syntax highlighting and a way to launch `ghci`. To get something like
 a modern IDE experience (autocompletion, highlighting errors, jumping
@@ -319,11 +319,11 @@ to the definition of functions, showing the docs for a function or
 type when you hover over it, etc etc) you need to install several
 additional "minor" modes that will run alongside `haskell-mode`. It
 really isn't essential to use an IDE for Haskell development. You
-can be very productive with just a powerful editor (emacs +
+can be very productive with just a powerful editor (Emacs +
 `haskell-mode`) and `ghci`. Whether you feel that you need to bother
 going further than that is up to you.
 
-Modifying emacs is done by editing the config file, usually
+Modifying Emacs is done by editing the config file, usually
 `~/.emacs`. To install `haskell-mode` add the following to your copy
 of `.emacs`.
 
@@ -352,7 +352,7 @@ of `.emacs`.
 
 There are quite a few options for getting more bells and whistles than
 `haskell-mode` provides. IMO the best at the time of writing (2021) is
-`lsp-mode`. This is an emacs interface to the [Language Server
+`lsp-mode`. This is an Emacs interface to the [Language Server
 Protocol](https://github.com/Microsoft/language-server-protocol/),
 which is a general framework for creating IDEs. The Haskell Language
 Server is a work in progress and if you are going to use it you should
