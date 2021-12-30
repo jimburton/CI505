@@ -361,13 +361,10 @@ like renaming a function across an entire project don't work (yet)
 but emacs is good at that sort of thing anyway. To get `lsp-mode`
 running follow these steps:
 
-+ Download the binaries for the [Haskell Language
-  Server](https://github.com/haskell/haskell-language-server/releases) and put
-  them somewhere in your `PATH`. You need to download the tarball matching your 
-  OS *and* your version of GHC. I put the binaries in `~/bin/`, which is included
-  in my `PATH`.
++ Use [GHCUp](https://www.haskell.org/ghcup/) to install the Haskell Language
+  Server.
 + Install the various minor modes that connect the Haskell Language
-  Server to emacs and provide autocompletion etc. The snippet below is
+  Server to Emacs and provide autocompletion etc. The snippet below is
   how I'm doing it -- you could certainly make do with less. My `.emacs`
   file is very messy and diverges from best practice in many ways but
   if you're interested it's
