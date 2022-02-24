@@ -410,9 +410,7 @@ running follow these steps:
 	  :ensure t)
   (push 'company-ghci company-backends)
   (add-hook 'haskell-mode-hook 'company-mode)
-  ;; Turn off some noisy defaults
-  (setq lsp-ui-sideline-show-code-actions nil
-        lsp-ui-doc-show-with-cursor nil)
+  (setq lsp-haskell-process-path-hie "haskell-language-server-wrapper")
   ;; A few handy keybindings. 
   (define-key lsp-command-map (kbd "i") 'lsp-ui-imenu)
   (define-key lsp-command-map (kbd "d") 'lsp-ui-doc-show)
