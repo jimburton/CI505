@@ -59,7 +59,8 @@ Going back to the terminal, reload your work and test it like so:
 > test
 ```
 
-(Note that you can type `:r` as an abbreviation for `:reload`.) Add
+(Note that you can type `:r` as an abbreviation for `:reload`. You can also use
+tab-completion in `ghci` and the up arrow to get back to previous entries.) Add
 your solutions to all of the following problems to
 `Week1.hs`. Whenever you make changes you need to reload the file in
 the REPL.
