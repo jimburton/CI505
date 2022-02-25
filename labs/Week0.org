@@ -51,14 +51,14 @@ take' _ []     = []
 take' n (x:xs) = x : take' (n-1) xs 
 #+END_SRC
 
-This module, called ~Week1~, contains a single function, ~take'~. That function
+This module, called ~Week1~, contains a single function, ~take\'~. That function
 is made up of four lines of code:
 
-1. The /type signature/. This tells us that ~take'~ is a function that takes two
+1. The /type signature/. This tells us that ~take\'~ is a function that takes two
    arguments, and ~Int~ and a list of values of type ~a~ (which could be any
    type, making this function /polymorphic/), and returns a list of values of
    the same type ~a~.
-2. Following the type signature is the implementation of ~take'~, which is made
+2. Following the type signature is the implementation of ~take\'~, which is made
    up of three /equations/ defined using /pattern matching/.
    + ~take' 0 xs~. If the compiler sees a call to take the function such as ~take'
      0 [1, 2, 3]~ then the first equation will match (because the first argument
