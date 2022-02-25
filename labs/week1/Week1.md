@@ -59,7 +59,8 @@ Going back to the terminal, reload your work and test it like so:
 > test
 ```
 
-(Note that you can type `:r` as an abbreviation for `:reload`.) Add
+(Note that you can type `:r` as an abbreviation for `:reload`. You can also use
+tab-completion in `ghci` and the up arrow to get back to previous entries.) Add
 your solutions to all of the following problems to
 `Week1.hs`. Whenever you make changes you need to reload the file in
 the REPL.
@@ -105,8 +106,8 @@ the list, `a`, must be a type that can be compared for equality:
 4. Write a (recursive) function `length :: [a] -> Int` which
 calculates the length of a list. Use pattern matching to write an
 equation for the empty list (what is its length?) and the case when
-the list contains elements. Recursively, the length a list with a head
-a tail is one plus the length of the tail.
+the list contains elements. Recursively, the length of a list with a head
+and a tail is one plus the length of the tail.
 
 5. Write a function `drop :: Int -> [a] -> [a]`, where `drop n xs`
    returns `xs` with its first `n` elements removed. Make a function
