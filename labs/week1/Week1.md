@@ -106,8 +106,8 @@ the list, `a`, must be a type that can be compared for equality:
 4. Write a (recursive) function `length :: [a] -> Int` which
 calculates the length of a list. Use pattern matching to write an
 equation for the empty list (what is its length?) and the case when
-the list contains elements. Recursively, the length a list with a head
-a tail is one plus the length of the tail.
+the list contains elements. Recursively, the length of a list with a head
+and a tail is one plus the length of the tail.
 
 5. Write a function `drop :: Int -> [a] -> [a]`, where `drop n xs`
    returns `xs` with its first `n` elements removed. Make a function
