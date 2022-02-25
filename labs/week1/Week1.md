@@ -1,34 +1,14 @@
 # Week 1
 
-## Installing the Haskell compiler and other tools
-
-The core Haskell toolchain consists of the compiler, `ghc`, the
-interpreter, `ghci`, and the build tool `cabal`.  These are installed on
-Linux in the labs. Install them on your own computer using
-[GHCUp](https://www.haskell.org/ghcup/).
-
-`ghc` is used to create stand-alone executable programs. `ghci` is
-used to run scripts and to experiment with code. `cabal` is used to
-build larger Haskell projects and automates tasks like downloading and
-managing dependencies. 
-
-When working on Haskell code you can use any editor to create files
-with the extension `.hs` then load them into `ghci` or compile them
-with `ghc`. That is probably the best way to go for the first few
-weeks of this course. 
-
-Eventually you will want to benefit from syntax highlighting,
-auto-completion of function names, easy ways to run the code and all
-the other things you expect from an IDE. Haskell plugins are available
-for popular IDEs such as VS Code and IntelliJ, and for the power
-editors Emacs and Vim. Read more about the options
-[here](https://wiki.haskell.org/IDEs).
-
 ## Starting Haskell and running your first program
 
-Open a terminal. Within the terminal, `cd` to the directory this file is 
-in: `labs/week1`. Start the haskell interpreter by typing
-`cabal repl`. This is what that looks like on my system:
+I'm assuming you have downloaded this respository, either by using git
+to clone it or simply by downloading a zip file from github, and have
+the [Haskell toolchain installed](https://www.haskell.org/ghcup/).
+
+Within a terminal, `cd` to the directory this file is in:
+`<path-to-the-repository>/labs/week1`. Start the haskell interpreter
+by typing `cabal repl`. This is what that looks like on my system:
 
 ```
 $ cabal repl

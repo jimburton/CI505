@@ -9,7 +9,7 @@ practice with Haskell.
 
 ## Week 1
 
-[Getting started](labs/week1/Week1.md).
+[Basic terms](labs/Week0.org) and [getting started](labs/week1/Week1.md).
 
 ## Week 2
 
