@@ -366,9 +366,9 @@ running follow these steps:
 + Install the various minor modes that connect the Haskell Language
   Server to Emacs and provide autocompletion etc. The snippet below is
   how I'm doing it -- you could certainly make do with less. My `.emacs`
-  file is very messy and diverges from best practice in many ways but
+  file is very messy and diverges from best practice in several ways but
   if you're interested it's
-  [here](https://github.com/jimburton/dot-files/blob/master/.emacs).
+  [here](https://github.com/jimburton/dot-files/blob/master/.emacs.d/init.el).
   
   ```elisp
   ;; which-key is useful for finding which keys are bound in different modes
