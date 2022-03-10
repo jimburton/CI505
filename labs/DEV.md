@@ -307,7 +307,7 @@ Once you get used to the quirky keybindings and terminology emacs is a
 *very* powerful editor that has "modes" for every programming language
 under the sun. The [Emacs for You](https://github.com/susam/emfy)
 project provides an introduction to programming in Emacs and a small,
-feature-rich configuration.
+feature-rich configuration. More and more people use an Emacs "distro"
 
 For integration between Emacs and `git`, see [`magit`](https://magit.vc/).
 
