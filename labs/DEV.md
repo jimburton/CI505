@@ -352,14 +352,17 @@ of `.emacs`.
 
 There are quite a few options for getting more bells and whistles than
 `haskell-mode` provides. IMO the best at the time of writing (2021) is
-`lsp-mode`. This is an Emacs interface to the [Language Server
+`lsp-mode`. This is an Emacs interface to `ghc` that uses the
+[Language Server
 Protocol](https://github.com/Microsoft/language-server-protocol/),
 which is a general framework for creating IDEs. The Haskell Language
-Server is a work in progress and if you are going to use it you should
-periodically check the site below for major updates. Refactoring tasks
-like renaming a function across an entire project don't work (yet)
-but emacs is good at that sort of thing anyway. To get `lsp-mode`
-running follow these steps:
+Server is a work in progress. One or two important IDE features like
+renaming a function across an entire project don't work (yet) but it
+is being very actively worked on so check for new versions every now
+and then (you can do this using `ghcup tui` if you used `ghcup` to
+install the toolchain). 
+
+To get `lsp-mode` running follow these steps:
 
 + Use [GHCUp](https://www.haskell.org/ghcup/) to install the Haskell Language
   Server.
