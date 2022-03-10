@@ -21,27 +21,22 @@ Haskell projects --
 [`stack`](https://docs.haskellstack.org/en/stable/README/) and
 [`cabal`](https://www.haskell.org/cabal/). We will be using `cabal`.
 
-`cabal` is installed as part of the Haskell platform but you should
-make sure you have the latest version. Start by entering these commands
-into a terminal:
+The recommended way to install `cabal` is by using
+[GHCUp](https://www.haskell.org/ghcup/). If you used GHCUp to install
+the compiler then you will have `cabal` installed already. You can
+check this with the command `ghcup tui`. 
 
-```bash
-$ cabal update
-
-$ cabal install cabal-install
-```
-
-This will download the latest list of packages from the "Hackage"
-repository (which is where haskell developers upload libraries and
-other software for distribution) and install the latest version of
-`cabal`. The default location for packages is `~/.cabal/bin`, where
-`~` is your home directory.  On Linux it might be something like
-`/home/ab123`. To run programs installed by `cabal` (such as the new
-version of it you just installed), you need to add `~/.cabal/bin` to
-your `PATH`. This is an environment variable containing a list of
-locations in the file system that Bash will look in when you type a
-command in to a terminal. On Linux you can check the current state of
-`PATH` like this:
+Run the command `cabal update`. This will download the latest list of
+packages from the Hackage repository, which is where haskell
+developers upload libraries and other software for distribution. The
+default location for packages is `~/.cabal/bin`, where `~` is your
+home directory.  On Linux it might be something like `/home/ab123`. To
+run programs installed by `cabal` (such as the new version of it you
+just installed), you need to add `~/.cabal/bin` to your `PATH`. This
+is an environment variable containing a list of locations in the file
+system that Bash will look in when you type a command in to a
+terminal. On Linux you can check the current state of `PATH` like
+this:
 
 ```bash
 $ echo $PATH
@@ -89,7 +84,8 @@ $ ls
 CHANGELOG.md  Main.hs  myproject.cabal  Setup.hs
 ```
 
-Display the contents of the config file with `cat`:
+Display the contents of the config file with `cat`. The details may
+vary, but the contents will look something like this:
 
 ```bash
 myproject$ cat myproject.cabal 
@@ -369,8 +365,7 @@ renaming a function across an entire project don't work (yet) but
 emacs is good at that sort of thing anyway. To get `lsp-mode` running
 follow these steps:
 
-+ Use [GHCUp](https://www.haskell.org/ghcup/) to install the Haskell
-  Language Server.
++ Use GHCUp to install the Haskell Language Server.
 
 + Install the various minor modes that connect the Haskell Language
   Server to Emacs and provide autocompletion etc. The snippet below is
