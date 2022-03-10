@@ -31,12 +31,11 @@ packages from the Hackage repository, which is where haskell
 developers upload libraries and other software for distribution. The
 default location for packages is `~/.cabal/bin`, where `~` is your
 home directory.  On Linux it might be something like `/home/ab123`. To
-run programs installed by `cabal` (such as the new version of it you
-just installed), you need to add `~/.cabal/bin` to your `PATH`. This
-is an environment variable containing a list of locations in the file
-system that Bash will look in when you type a command in to a
-terminal. On Linux you can check the current state of `PATH` like
-this:
+run programs installed by `cabal` you need to add `~/.cabal/bin` to
+your `PATH`. This is an environment variable containing a list of
+locations in the file system that Bash will look in when you type a
+command in to a terminal. On Linux you can check the current state of
+`PATH` like this:
 
 ```bash
 $ echo $PATH
