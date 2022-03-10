@@ -333,7 +333,9 @@ of the additional "minor" modes that run alongside `haskell-mode`.
 
 Modifying Emacs is done by editing the config file, usually
 `~/.emacs.d/init.el`. To install `haskell-mode` create that file if it
-doesn't exist and add the following to it.
+doesn't exist and add the following to it. (NB: If you have set up
+"Emacs For You" the file will exist and already contain some of this
+code.)
 
 ```elisp
 ;; sets up the emacs package manager and the use-package macro
