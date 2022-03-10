@@ -34,15 +34,14 @@ $ cabal install cabal-install
 This will download the latest list of packages from the "Hackage"
 repository (which is where haskell developers upload libraries and
 other software for distribution) and install the latest version of
-`cabal`. The default location for packages is
-`~/.cabal/bin`, where `~` is your home directory.
-On Linux it might be something like `/home/ab123`. To run 
-programs installed by `cabal` (such as the
-new version of it you just installed), you need to
-add `~/.cabal/bin` to your `PATH`. This is an environment
-variable containing a list of locations in the file system that Bash
-will look in when you type a command in to a
-terminal. On Linux you can check the current state of `PATH` like this:
+`cabal`. The default location for packages is `~/.cabal/bin`, where
+`~` is your home directory.  On Linux it might be something like
+`/home/ab123`. To run programs installed by `cabal` (such as the new
+version of it you just installed), you need to add `~/.cabal/bin` to
+your `PATH`. This is an environment variable containing a list of
+locations in the file system that Bash will look in when you type a
+command in to a terminal. On Linux you can check the current state of
+`PATH` like this:
 
 ```bash
 $ echo $PATH
@@ -74,12 +73,13 @@ $ which cabal
 /home/ab123/.cabal/bin/cabal
 ```
 
-([The steps needed to add a location to the path on Windows](https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/) 
-are a little different but no more complicated.) Now you can start building 
-haskell projects. The
-basic idea is that each project lives in its own directory and if the
-project is called `myproject` there should be a config file called `myproject.cabal`
-at the top level. You can generate a new project like this:
+([The steps needed to add a location to the path on
+Windows](https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/)
+are a little different but no more complicated.) Now you can start
+building haskell projects. The basic idea is that each project lives
+in its own directory and if the project is called `myproject` there
+should be a config file called `myproject.cabal` at the top level. You
+can generate a new project like this:
 
 ```bash
 $ mkdir myproject
@@ -151,17 +151,19 @@ Enter a number and I'll count out the change
 
 ```
 
-Enter an empty line to stop using the program. List the contents of the
-project folder:
+Enter an empty line to stop using the program. List the contents of
+the project folder:
 
 ```
 change$ ls
 cabal.project.local  ChangeLog.md   LICENSE    Setup.hs  TAGS
 change.cabal         dist-newstyle  README.md  src       test
 
-```
-The main things to notice are the `src` folder, which is where the code
-lives, and the config file `change.cabal`. Open the config file and read the contents. 
+``` 
+
+The main things to notice are the `src` folder, which is where the
+code lives, and the config file `change.cabal`. Open the config file
+and read the contents.
 
 From the `cabal` file, you can see that the entry point for the
 application is the file `src/Main.hs`. Open this file and read the
@@ -171,9 +173,10 @@ Note that most of the code is actually in the module called `Change`,
 which is imported in the `Main` module. Open `Change.hs` and read this
 file too.
 
-The `test` folder contains tests for the project. Haskell testing will be 
-discussed later in the module. For now, use `cabal` to run the tests,
-noting the names of the two test-suites given in `change.cabal`.
+The `test` folder contains tests for the project. Haskell testing will
+be discussed later in the module. For now, use `cabal` to run the
+tests, noting the names of the two test-suites given in
+`change.cabal`.
 
 
 Next, we will look at a project which is still very simple but
@@ -189,7 +192,8 @@ $ cd mkpasswd
 ```
 
 Take a look at the `cabal` config file for the new project,
-`mkpasswd.cabal`. This is the block (or "stanza") that defines the program to be built:
+`mkpasswd.cabal`. This is the block (or "stanza") that defines the
+program to be built:
 
 ```
 executable mkpasswd
@@ -219,13 +223,14 @@ $ cabal run mkpasswd
 $ cabal run test-mkpasswd
 ```
 
-This program takes a variety of flags (or options) on the command line that govern
-the kind of passwords that are generated. If you want to pass flags to
-a program that is being run by `cabal` you have to do so after two
-dashes (`--`) so that `cabal` can distinguish between the arguments
-intended for itself and those intended for *the program it is running*. Pass
-the `--help` command to `MkPasswd` to lists all its options then
-experiment with producing a few different types of password:
+This program takes a variety of flags (or options) on the command line
+that govern the kind of passwords that are generated. If you want to
+pass flags to a program that is being run by `cabal` you have to do so
+after two dashes (`--`) so that `cabal` can distinguish between the
+arguments intended for itself and those intended for *the program it
+is running*. Pass the `--help` command to `MkPasswd` to lists all its
+options then experiment with producing a few different types of
+password:
 
 ```
 $ cabal run mkpasswd -- --help
@@ -243,9 +248,10 @@ $ mkpasswd  -l 5 -e
 vIt@15 [vitals] 
 ```
 
-One more very useful thing `cabal` can do for you is to start the interpreter, `ghci`,
-loading all the modules and dependencies that it needs to run. This is done with the `repl`
-command. Run the program in the REPL and call its `main` function:
+One more very useful thing `cabal` can do for you is to start the
+interpreter, `ghci`, loading all the modules and dependencies that it
+needs to run. This is done with the `repl` command. Run the program in
+the REPL and call its `main` function:
 
 ```
 $ cabal repl
@@ -262,14 +268,18 @@ for full information on `cabal`.
 
 ## Writing Haskell with style
 
-The way that you format and organise your code is important. It has an enormous effect on 
- the readability and ease of maintaining the code. If you get used to using standard conventions 
- then others will find it much easier to understand what you wrote, and you'll find it easier to 
- read code written by others too. I recommend that everyone read and follow 
- [Johan Tibell's Haskell Style Guide](https://github.com/tibbe/haskell-style-guide/blob/master/haskell-style.md). 
+The way that you format and organise your code is important. It has an
+ enormous effect on the readability and ease of maintaining the
+ code. If you get used to using standard conventions then others will
+ find it much easier to understand what you wrote, and you'll find it
+ easier to read code written by others too. I recommend that everyone
+ read and follow this [Haskell Style
+ Guide](https://kowainik.github.io/posts/2019-02-06-style-guide).
 
-You can also get suggestions on improving your code from the very useful `hlint` tool. You can 
-install it using `cabal`, read the hints then fix them: 
+You can also get suggestions on improving your code from the very
+useful `hlint` tool. You can install it using `cabal`, read the hints
+then fix them:
+
 ```
 $ cabal install hlint
 $ hlint src/
@@ -299,7 +309,8 @@ There is a list of options which is kept up to date on the Haskell
 wiki [here](https://wiki.haskell.org/IDEs).
 
 I think the best option is to learn one of the "poweruser" editors,
-[vim](https://www.vim.org/) or [emacs](https://www.gnu.org/software/emacs/). I use emacs. 
+[vim](https://www.vim.org/) or
+[emacs](https://www.gnu.org/software/emacs/). I use emacs.
 
 ### Emacs for Haskell development
 
@@ -313,19 +324,18 @@ For integration between Emacs and `git`, see [`magit`](https://magit.vc/).
 
 At a minimum, you want to install the Emacs "major" mode for Haskell,
 `haskell-mode`.  `haskell-mode` is intentionally basic. It provides
-syntax highlighting and a way to launch `ghci`. To get something like
-a modern IDE experience (autocompletion, highlighting errors, jumping
-to the definition of functions, showing the docs for a function or
-type when you hover over it, etc etc) you need to install several
-additional "minor" modes that will run alongside `haskell-mode`. It
-really isn't essential to use an IDE for Haskell development. You
-can be very productive with just a powerful editor (Emacs +
-`haskell-mode`) and `ghci`. Whether you feel that you need to bother
-going further than that is up to you.
+syntax highlighting and a way to launch `ghci`. In my experience you
+can already become very productive with this level of support but if
+you want a modern IDE experience (autocompletion, highlighting errors,
+jumping to the definition of functions, showing the docs for a
+function or type when you hover over it, etc etc) you can install some
+of the additional "minor" modes that run alongside `haskell-mode`.
 
 Modifying Emacs is done by editing the config file, usually
-`~/.emacs`. To install `haskell-mode` add the following to your copy
-of `.emacs`.
+`~/.emacs.d/init.el`. To install `haskell-mode` create that file if it
+doesn't exist and add the following to it. (NB: If you have set up
+"Emacs For You" the file will exist and already contain some of this
+code.)
 
 ```elisp
 ;; sets up the emacs package manager and the use-package macro
@@ -350,27 +360,23 @@ of `.emacs`.
   :ensure t)
 ```
 
-There are quite a few options for getting more bells and whistles than
-`haskell-mode` provides. IMO the best at the time of writing (2021) is
-`lsp-mode`. This is an Emacs interface to `ghc` that uses the
-[Language Server
+There are several ways to go about it but IMO the best option for an
+IDE experience in emacs at the time of writing (2021) is
+`lsp-mode`. This is an Emacs interface to the [Language Server
 Protocol](https://github.com/Microsoft/language-server-protocol/),
-which is a general framework for creating IDEs. The Haskell Language
-Server is a work in progress. One or two important IDE features like
-renaming a function across an entire project don't work (yet) but it
-is being very actively worked on so check for new versions every now
-and then (you can do this using `ghcup tui` if you used `ghcup` to
-install the toolchain). 
+which is a general framework for creating IDEs. Refactoring tasks like
+renaming a function across an entire project don't work (yet) but
+emacs is good at that sort of thing anyway. To get `lsp-mode` running
+follow these steps:
 
-To get `lsp-mode` running follow these steps:
++ Use [GHCUp](https://www.haskell.org/ghcup/) to install the Haskell
+  Language Server.
 
-+ Use [GHCUp](https://www.haskell.org/ghcup/) to install the Haskell Language
-  Server.
 + Install the various minor modes that connect the Haskell Language
   Server to Emacs and provide autocompletion etc. The snippet below is
-  how I'm doing it -- you could certainly make do with less. My `.emacs`
-  file is very messy and diverges from best practice in several ways but
-  if you're interested it's
+  how I'm doing it -- you could certainly make do with less. My
+  `.emacs` file is pretty messy and diverges from best practice in
+  several ways but if you're interested it's
   [here](https://github.com/jimburton/dot-files/blob/master/.emacs.d/init.el).
   
   ```elisp
