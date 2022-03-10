@@ -56,17 +56,6 @@ Then apply the changes:
 $ source .bashrc
 ```
 
-Check that the changes were applied by echoing `PATH` again. The new
-version of `cabal` should now be the first one that the system
-encounters when you enter the command. Check this using the `which`
-command, which reports the location of executables in your `PATH`. You
-should see something like this:
-
-```bash
-$ which cabal
-/home/ab123/.cabal/bin/cabal
-```
-
 ([The steps needed to add a location to the path on
 Windows](https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/)
 are a little different but no more complicated.) Now you can start
