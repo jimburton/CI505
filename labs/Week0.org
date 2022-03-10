@@ -1,0 +1,108 @@
+* Basic terms
+
+A few preliminaries before you get started coding.
+
+** Haskell and GHC
+
+Haskell is purely functional language whose current definition is given by the
+Haskell2010 standard.
+
+The compiler is called GHC, which stands for the Glasgow Haskell Compiler. It
+isn't the only one, but it's the only one that is widely used. GHC adds many
+language extensions that aren't part of the 2010 standard. Some of the more
+widely used ones are likely to be included in future stnadards and are explained
+on this course.
+
+** Installing the Haskell compiler and other tools
+
+The core Haskell toolchain consists of a compiler, =ghc=, the interpreter,
+=ghci=, and the build tool =cabal=.  These are installed on Linux in the
+labs. Install them on your own computer using [[https://www.haskell.org/ghcup/][GHCUp]].
+
+=ghc= is used to create stand-alone executable programs. =ghci= is
+used to run scripts and to experiment with code. =cabal= is used to
+build larger projects and to automate tasks like downloading and
+managing dependencies. 
+
+When working on Haskell code you can use any editor to create files
+with the extension =.hs= then load them into =ghci= (possibly using
+=cabal= for convenience, as explained below) or compile them with
+=ghc=. 
+
+Eventually you will want to benefit from syntax highlighting, auto-completion of
+function names, refactoring and all the other things you expect from an
+IDE. Haskell plugins are available for popular IDEs such as VS Code and
+IntelliJ, and for the power editors Emacs and Vim. However, navigating all of
+this is a bit of a distraction from learning the language and a simple editor is
+probably the best way to go for the first few weeks of this course. We will
+cover how to set yourself up with a fully productive development environment in
+later weeks.
+
+Haskell code is organised into *modules*. Modules may contain /functions/,
+/datatype declarations/ and one or two other things. This is a module:
+
+#+BEGIN_SRC haskell
+-- In a file called Week1.hs
+module Week1 where
+
+take' :: Int -> [a] -> [a]
+take' 0 xs     = []
+take' _ []     = []
+take' n (x:xs) = x : take' (n-1) xs 
+#+END_SRC
+
+This module, called =Week1=, contains a single function, =take='. That function
+is made up of four lines of code:
+
+1. The /type signature/. This tells us that =take=' is a function that takes two
+   arguments, and =Int= and a list of values of type =a= (which could be any
+   type, making this function /polymorphic/), and returns a list of values of
+   the same type =a=.
+2. Following the type signature is the implementation of =take=', which is made
+   up of three /equations/ defined using /pattern matching/.
+   + =take' 0 xs=. If the compiler sees a call to take the function such as =take'
+     0 [1, 2, 3]= then the first equation will match (because the first argument
+     is zero), so the result will be =[]=, the empty list.
+   + =take' n []=. If the call to the function looks something like =take' 42 []=
+     then the second equation will match, and the result is again =[]=.
+   + =take' n (x:xs)=. If neither of the previous patterns match then it stands
+     to reason that the third one will. That is, =n= will match any =Int=
+     and =(x:xs)= matches a list with at least one thing in it. This pattern
+     gives a name to the /head/ of the list, =x=, and its /tail/, =xs=,
+     separated by the /cons/ operator, =:=. Note that there is no guarantee that
+     there is /more/ than one thing in the list -- =xs= could be empty.
+
+Actually, we might have preferred to call this function =take= (without the
+trailing apostrophe), but this name is already given to a function in the
+=Prelude=. This is the Haskell standard library that is loaded whenever we
+compile a module. One alternative to finding a name that isn't taken is to
+import the =Prelude= explicitly. Import statements go directly beneath the
+module declaration. By doing this we can either
+
+1. ask for everything except any functions whose names will clash with our own,
+   e.g. =import Prelude hiding (take)=, or
+2. import the =prelude= with a qualified name, such as =P=, enabling us to name
+   our own function =take= and to refer to the =Prelude='s version as =P.take=,
+   e.g.
+
+   #+BEGIN_SRC haskell
+   import qualified Prelude as P
+   #+END_SRC
+
+We can compile our file using =ghc= to produce a binary object file, but in order
+to make a standalone executable Haskell needs to know what the /entry point/
+is. So, it expects there to be a module called =Main= which includes a function
+called =main= which has the right type signature.
+
+Alternatively, we can load our file into =ghci= and interact with it there.
+
+#+BEGIN_SRC haskell
+$ ghci Week1.hs
+> GHCi, version 8.10.7: https://www.haskell.org/ghc/  :? for help
+[1 of 1] Compiling Week1            ( Week1.hs, interpreted )
+Ok, one module loaded.
+*Week1> take 5 [1..10]
+[1,2,3,4,5]
+#+END_SRC
+
+Now lets [[file:week1/Week1.md][write some code]]!
