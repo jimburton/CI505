@@ -159,7 +159,9 @@ change$ ls
 cabal.project.local  ChangeLog.md   LICENSE    Setup.hs  TAGS
 change.cabal         dist-newstyle  README.md  src       test
 
-``` The main things to notice are the `src` folder, which is where the
+``` 
+
+The main things to notice are the `src` folder, which is where the
 code lives, and the config file `change.cabal`. Open the config file
 and read the contents.
 
