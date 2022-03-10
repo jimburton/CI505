@@ -13,12 +13,10 @@ cabal-dev
 .hsenv
 .cabal-sandbox/
 cabal.sandbox.config
+cabal.project.local
 *.prof
 *.aux
 *.hp
-*.eventlog
-.stack-work/
-cabal.project.local
-cabal.project.local~
-.HTF/
-.ghc.environment.*
+TAGS/
+TAGS
+**/#*
