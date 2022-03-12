@@ -56,9 +56,9 @@ Then apply the changes:
 $ source .bashrc
 ```
 
-([The steps needed to add a location to the path on
+[The steps needed to add a location to the path on
 Windows](https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/)
-are a little different but no more complicated.) Now you can start
+are a little different but no more complicated. Now you can start
 building haskell projects. The basic idea is that each project lives
 in its own directory and if the project is called `myproject` there
 should be a config file called `myproject.cabal` at the top level. You
