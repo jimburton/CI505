@@ -4,6 +4,7 @@ module Main
 
 import Control.Monad (forever)
 import qualified Network.WebSockets as WS
+import qualified Data.Text.IO as TIO
 import Data.Text (Text) 
 
 main :: IO ()
@@ -17,6 +18,7 @@ wsapp pending = WS.acceptRequest pending >>= talk
 talk :: WS.Connection -> IO ()
 talk conn = forever $ do
   msg <- WS.receiveData conn
+  TIO.putStrLn msg
   WS.sendTextData conn $ echo msg
 
 echo :: Text -> Text
