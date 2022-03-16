@@ -2,6 +2,8 @@
 
 module Log where
 
+import Data.Functor ((<&>))
+
 -- | The classification of a message
 data MessageType = Info
                  | Warning
@@ -25,30 +27,25 @@ data MaybeInt = ValidInt Int
 -- Test functions
 
 testReadLogFile :: (String -> IO [String]) -> String -> IO ()
-testReadLogFile readF str = do ls <- readF str
-                               mapM_ putStrLn ls
+testReadLogFile readF str = readF str >>= mapM_ putStrLn
 
 testParseMessage :: (String -> IO [String]) ->
                     String ->
                     (String -> MaybeLogMessage) ->
                     IO ()
-testParseMessage readF path parseF = do ls <- readF path
-                                        mapM_ (putStrLn . show . parseF) ls
+testParseMessage readF path parseF = readF path >>= mapM_ (print . parseF)
 
 testParse :: (String -> IO [LogMessage]) ->
              Int ->
              String ->
              IO ()
-testParse parseF i path = do ls <- parseF path
-                             mapM_ (putStrLn . show) (take i ls)
+testParse parseF i path = parseF path >>= mapM_ print . take i 
 
 testWhatWentWrong :: (String -> IO [LogMessage]) ->
                      String ->
                     ([LogMessage] -> [String]) ->
                      IO ()
-testWhatWentWrong parseF path wwwF = do ls <- parseF path
-                                        let strs = wwwF ls 
-                                        print strs
+testWhatWentWrong parseF path wwwF = parseF path >>= print . wwwF
 
 {- Monadic versions for comparison -}
 testReadLogFile' :: (String -> IO [String]) -> String -> IO ()
@@ -58,19 +55,17 @@ testParseMessage' :: (String -> IO [String]) ->
                     String ->
                     (String -> MaybeLogMessage) ->
                     IO ()
-testParseMessage' readF path parseF = readF path >>=
-                                      mapM_ (putStrLn . show . parseF) 
+testParseMessage' readF path parseF = readF path >>= mapM_ (print. parseF) 
 
 testParse' :: (String -> IO [LogMessage]) ->
              Int ->
              String ->
              IO ()
-testParse' parseF i path = parseF path >>=
-                           mapM_ (putStrLn . show) . (take i)
+testParse' parseF i path = parseF path >>= mapM_ print . take i
 
 testWhatWentWrong' :: (String -> IO [LogMessage]) ->
                      String ->
                     ([LogMessage] -> [(TimeStamp, String)]) ->
                      IO ()
-testWhatWentWrong' parseF path wwwF = parseF path >>= (return . wwwF) >>= print
+testWhatWentWrong' parseF path wwwF = parseF path >>= print . wwwF
                            

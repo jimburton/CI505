@@ -75,3 +75,7 @@ instance Applicative Tree where
   (Leaf f) <*> t                      = fmap f t
   (Branch f _ _) <*> (Leaf x)         = Leaf (f x)
   (Branch f l r) <*> (Branch x l' r') = Branch (f x) (l <*> l') (r <*> r')
+
+concatLines :: IO String
+concatLines = (++) <$> getLine <*> getLine
+
