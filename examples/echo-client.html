@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script type="text/javascript">
+    function Client(socket) {
+	socket.onopen = function () {
+	}
+	socket.onclose = function () {
+	    alert("closed web socket");
+	}
+	socket.onerror = function (event) {
+	    alert(event);
+	}
+	socket.onmessage = function (event) {
+	    alert(event.data);
+	}
+    }
+    var client;
+    var socket;
+    // Connect to the websocket server.
+    function connect() {
+	socket = new WebSocket("ws://localhost:9160/")
+	client = new Client(socket);
+    }
+    </script>
+    </head>
+    <body onload="connect()">
+      <label for="echoText">Text to echo:</label><br>
+      <input type="text" id="echoText" name="echoText"><br>
+      <button onclick="socket.send(document.getElementById('echoText').value)">
+		  Echo
+	  </button> 
+    </body>
+</html>

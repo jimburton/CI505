@@ -56,9 +56,9 @@ Then apply the changes:
 $ source .bashrc
 ```
 
-([The steps needed to add a location to the path on
+[The steps needed to add a location to the path on
 Windows](https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/)
-are a little different but no more complicated.) Now you can start
+are a little different but no more complicated. Now you can start
 building haskell projects. The basic idea is that each project lives
 in its own directory and if the project is called `myproject` there
 should be a config file called `myproject.cabal` at the top level. You
@@ -181,10 +181,10 @@ program to be built:
 
 ```
 executable mkpasswd
-  main-is: Main.hs             
+  main-is:             Main.hs             
   other-modules:       MkPasswd.MkPasswd
-                     , MkPasswd.Types
-  build-depends:       base, random >=1.0 
+  build-depends:       base
+                     , random >=1.0 
   hs-source-dirs:      src
   default-language:    Haskell2010
 
@@ -204,20 +204,16 @@ to run. Now run the program, followed by its tests:
 ```
 $ cabal run mkpasswd
 ...
-$ cabal run test-mkpasswd
+$ cabal run test-quickcheck
 ```
 
 This program takes a variety of flags (or options) on the command line
-that govern the kind of passwords that are generated. If you want to
-pass flags to a program that is being run by `cabal` you have to do so
-after two dashes (`--`) so that `cabal` can distinguish between the
-arguments intended for itself and those intended for *the program it
-is running*. Pass the `--help` command to `MkPasswd` to lists all its
-options then experiment with producing a few different types of
-password:
+that govern the kind of passwords that are generated. Pass the `--help` 
+command to `MkPasswd` to lists all its options then experiment with 
+producing a few different types of password:
 
 ```
-$ cabal run mkpasswd -- --help
+$ cabal run mkpasswd --help
 ```
 
 This is how you would run the program during development. `cabal` can
