@@ -15,9 +15,9 @@
 module Main where
 
 import Data.List ((\\), sort)
-import Test.Framework
-import Test.Framework.Providers.QuickCheck2
-import Test.QuickCheck
+import Test.Framework (Test, defaultMain)
+import Test.Framework.Providers.QuickCheck2 (testProperty)
+import Test.QuickCheck (NonEmptyList ( NonEmpty ) )
 
 -- * The code under test.
 
