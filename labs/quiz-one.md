@@ -24,7 +24,7 @@
 
 6. Write a `Foldable` instance for `Tree`.
 
-See (Week2.md)[Week2.md] and (Typeclasses.md)[Typeclasses.md]
+See [Week2](Week2.md) and [Typeclasses](Typeclasses.md).
 
 ## Hard
 
