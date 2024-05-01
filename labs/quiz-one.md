@@ -5,8 +5,7 @@
    
 2. Use a fold (right or left) to define `xorList`, which takes a list
    of Booleans and returns `True` if one but not all of them is
-   `True`. Note that this definition will require more than a single
-   call to the fold function. **Bonus points** if you can avoid
+   `True`. **Bonus points** if you can avoid
    traversing the list twice.
    
 3. Why would you use a left fold rather than a right one, or vice
