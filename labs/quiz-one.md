@@ -23,7 +23,7 @@
 
 6. Write a `Foldable` instance for `Tree`.
 
-See [Week2](labs/week2/Week2.md), [Typeclasses](Typeclasses.md) and the [Huffman problems](https://github.com/jimburton/huffman).
+See [Week2](week2/Week2.md), [Typeclasses](Typeclasses.md) and the [Huffman problems](https://github.com/jimburton/huffman).
 
 ## Hard
 
